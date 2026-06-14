@@ -132,7 +132,7 @@
 
   .spine {
     position: absolute;
-    left: 3.5%;
+    left: 28.4%;
     top: 0;
     width: 2px;
     height: 100%;
@@ -141,13 +141,34 @@
     z-index: 1;
   }
 
+  .spine-wrap {
+    position: relative;
+  }
+
   .spine-long {
     position: absolute;
-    left: 3.5%;
+    left: 23.86%;
+    top: 0;
     width: 2px;
+    height: 100%;
     background: var(--gold);
     opacity: 0.5;
     z-index: 1;
+  }
+
+  .icon-row {
+    display: grid;
+    grid-template-columns: 23.86% 1fr;
+    column-gap: 3.6%;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .icon-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .gold-rule {
@@ -775,6 +796,27 @@
       </div>
       <button class="btn-gold" id="photo-btn" onclick="submitPhotos()" disabled>Upload memories</button>
       <p class="status-msg" id="photo-status"></p>
+    </div>
+  </div>
+
+  <div class="gold-rule"></div>
+
+  <!-- ══ QUOTE SECTION ══ -->
+  <div class="quote-section" style="padding: 2.2rem 0 1.8rem; position:relative; flex-direction: column; align-items: center;">
+    <div class="quote-deco">
+      <img src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/QuoteSunflowers.png" alt="Sunflowers"/>
+    </div>
+
+    <div class="quote-body">
+      <p class="quote-text" style="font-size:0.82rem; color: rgba(196,168,130,0.55); letter-spacing:0.15em;">
+        · · · · · · · · · · · · · · ·
+      </p>
+      <p class="quote-text" style="margin: 0.4rem 0;">
+        · · · · · ·
+      </p>
+      <p class="quote-text" style="font-size:0.82rem; color: rgba(196,168,130,0.55); letter-spacing:0.12em;">
+        · · · · · · · · · · · · · · · · ·
+      </p>
     </div>
   </div>
 
