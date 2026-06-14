@@ -4,30 +4,35 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Keerthi & Savit - Wedding Celebration</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Edwardian+Script+ITC&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <style>
+  @import url('https://fonts.cdnfonts.com/css/edwardian-script-itc');
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg-gradient: linear-gradient(135deg, #320626 0%, #1a0214 50%, #080007 100%);
-    --panel-bg: rgba(255, 255, 255, 0.04);
-    --panel-border: rgba(201, 168, 76, 0.2);
+    --bg: linear-gradient(135deg, #320626 0%, #1a0214 50%, #080007 100%);
+    --panel-bg: rgba(255,255,255,0.04);
+    --panel-border: rgba(201,168,76,0.2);
     --gold: #c2a76c;
     --gold-light: #f3e1b6;
     --text-light: #f9f5eb;
     --text-muted: #bda685;
-    --shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    --shadow: 0 15px 35px rgba(0,0,0,0.6);
+    --font-body: 'Libre Baskerville','Baskerville Old Face','Baskerville',Georgia,serif;
+    --font-script: 'Edwardian Script ITC','Great Vibes',cursive;
+    --font-display: 'Cinzel',serif;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--bg-gradient);
+    background: var(--bg);
     color: var(--text-light);
-    font-family: 'EB Garamond', serif;
+    font-family: var(--font-body);
     min-height: 100vh;
     overflow-x: hidden;
-    max-width: 540px;
+    max-width: 640px;
     margin: 0 auto;
     position: relative;
     padding-bottom: 5rem;
@@ -35,81 +40,90 @@
   }
 
   body::before {
-    content: '';
-    position: fixed;
-    top: -20%; left: -50%; width: 200%; height: 200%;
-    background: radial-gradient(circle, rgba(194, 167, 108, 0.05) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+    content:'';
+    position:fixed;
+    top:-20%;left:-50%;width:200%;height:200%;
+    background:radial-gradient(circle,rgba(194,167,108,0.05) 0%,transparent 60%);
+    pointer-events:none;z-index:0;
   }
 
-  /* ── HERO ARRANGEMENT ── */
+  /* ─────────────────── HERO ─────────────────── */
+  /*  Stack layout: photo on top, name card below, seamlessly blended */
   .hero {
     position: relative;
     width: 100%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-bottom: 1px solid var(--panel-border);
     z-index: 1;
   }
 
-  .hero-bg-photo {
-    position: absolute;
-    inset: 0;
-    background-image: url('https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/LampPhoto.png');
-    background-size: cover;
-    background-position: center top;
-    z-index: 1;
-  }
-
-  .hero-darkener {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
-    z-index: 2;
-  }
-
-  .hero-title-container {
+  /* Photo fills full width, natural aspect ratio */
+  .hero-photo-wrap {
     position: relative;
-    z-index: 3;
-    text-align: center;
-    padding: 0 1rem;
     width: 100%;
+    line-height: 0;
   }
 
-  .hero-pre {
-    font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    color: var(--gold-light);
+  .hero-photo-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* Fade the bottom of the photo into the name panel */
+  .hero-photo-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 55%;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(20,2,16,0.7) 60%,
+      rgba(20,2,16,1) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Name panel — no background, it bleeds from photo fade */
+  .hero-name-panel {
+    background: rgba(20,2,16,1);
+    text-align: center;
+    padding: 1.2rem 1.5rem 2.2rem;
+    position: relative;
+  }
+
+  /* Cinzel for "Keerthi & Savit" */
+  .hero-names {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2rem, 8vw, 3.4rem);
+    letter-spacing: 0.18em;
+    color: #fff;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    display: block;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+    line-height: 1.15;
   }
 
-  .hero-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2rem, 7vw, 3rem);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    line-height: 1.2;
-    color: #ffffff;
-    text-shadow: 0 3px 15px rgba(0,0,0,0.9);
-  }
-
-  .hero-ampersand {
-    font-family: 'Edwardian Script ITC', cursive;
-    font-size: clamp(2.5rem, 9vw, 3.8rem);
+  .hero-amp {
+    font-family: var(--font-script);
+    font-size: clamp(2.2rem, 9vw, 3.8rem);
     color: var(--gold-light);
-    display: block;
-    margin: 0.1rem 0;
+    font-weight: 400;
+    vertical-align: middle;
+    line-height: 1;
+    display: inline-block;
+    margin: 0 0.25em;
   }
 
-  /* ── MAIN CONTENT ── */
+  /* Fine gold rule under names */
+  .hero-rule {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0.9rem auto 0;
+  }
+
+  /* ─────────────────── MAIN ─────────────────── */
   .main {
     padding: 2.5rem 1.5rem 0;
     display: flex;
@@ -132,358 +146,283 @@
   }
 
   .luxury-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 4px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    content:'';
+    position:absolute;top:0;left:0;width:100%;height:4px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
   }
 
-  /* ── INVITATION ── */
+  /* ─── INVITATION ─── */
   .invite-card {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:1.5rem;
+  }
+
+  /* Gold glow + subtle bounce on ALL decorative images */
+  @keyframes floatBounce {
+    0%,100% { transform: translateY(0px); }
+    50%      { transform: translateY(-5px); }
   }
 
   .invite-monogram {
-    width: 60px;
-    filter: drop-shadow(0 2px 8px rgba(194, 167, 108, 0.2));
-  }
-
-  .invite-msg {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: var(--text-light);
-    letter-spacing: 0.02em;
-  }
-
-  /* ── ITINERARY PLACES ── */
-  .timeline-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem;
-  }
-
-  .timeline-event {
-    text-align: center;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
-  }
-
-  .timeline-event:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-
-  .event-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    letter-spacing: 0.12em;
-    margin-bottom: 0.4rem;
-    font-weight: 500;
-  }
-
-  .event-schedule {
-    font-size: 1.05rem;
-    color: #ffffff;
-    letter-spacing: 0.03em;
-    margin-bottom: 0.6rem;
-  }
-
-  .event-location {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-  }
-
-  .transit-grid {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .transit-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(201, 168, 76, 0.06);
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    padding: 0.4rem 1rem;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    color: var(--text-light);
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .transit-pill:hover {
-    background: rgba(201, 168, 76, 0.15);
-    border-color: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .transit-pill svg {
-    width: 14px; height: 14px;
-    fill: var(--gold);
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  /* ── INTERACTIVE MODULES ── */
-  .interactive-header {
-    margin-bottom: 1.8rem;
-    text-align: center;
+    width: 90px;
+    filter: drop-shadow(0 0 8px rgba(194,167,108,0.55)) drop-shadow(0 0 18px rgba(194,167,108,0.25));
+    animation: floatBounce 3.5s ease-in-out infinite;
   }
 
   .interactive-icon {
-    width: 55px;
+    width: 80px;
     height: auto;
     margin-bottom: 0.8rem;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 0 8px rgba(194,167,108,0.55)) drop-shadow(0 0 18px rgba(194,167,108,0.25));
+    animation: floatBounce 3.8s ease-in-out infinite;
   }
 
-  .interactive-title {
-    font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
-    letter-spacing: 0.1em;
-    color: var(--gold-light);
+  .footer-emblem {
+    width: 65px;
+    opacity: 0.55;
+    filter: drop-shadow(0 0 8px rgba(194,167,108,0.5)) drop-shadow(0 0 18px rgba(194,167,108,0.2));
+    animation: floatBounce 4s ease-in-out infinite;
   }
 
-  .interactive-desc {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    margin-top: 0.3rem;
-  }
-
-  .input-capsule {
-    position: relative;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-
-  .input-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--gold);
-    font-size: 1rem;
-    pointer-events: none;
-  }
-
-  .luxury-input {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid var(--panel-border);
-    border-radius: 50px;
-    padding: 0.9rem 1.5rem 0.9rem 2.8rem;
-    color: #ffffff;
-    font-family: 'EB Garamond', serif;
-    font-size: 1.05rem;
-    outline: none;
-    transition: all 0.3s ease;
-  }
-
-  .luxury-input::placeholder { color: rgba(196, 168, 130, 0.4); font-style: italic; }
-
-  .action-button {
-    display: block;
-    width: 100%;
-    padding: 0.9rem 1.5rem;
-    background: linear-gradient(90deg, #947a44 0%, var(--gold) 50%, #947a44 100%);
-    background-size: 200% auto;
-    border: none;
-    border-radius: 50px;
-    color: #1a0214;
-    font-family: 'Cinzel', serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  .action-button:hover {
-    background-position: right center;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(194, 167, 108, 0.25);
-  }
-
-  .action-button:disabled {
-    background: #463b25;
-    color: #8c7856;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-
-  /* ── PHOTO MATRICES ── */
-  .photo-matrix {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .photo-vault-slot {
-    aspect-ratio: 1;
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px dashed var(--panel-border);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .vault-plus {
-    color: var(--gold);
-    font-size: 1.8rem;
-    font-weight: 300;
-  }
-
-  .photo-vault-slot img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-  }
-
-  .vault-remove {
-    position: absolute;
-    top: 5px; right: 5px;
-    width: 20px; height: 20px;
-    background: #61133d;
-    border: 1px solid var(--gold);
-    border-radius: 50%;
-    color: var(--gold-light);
-    font-size: 11px;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 3;
-  }
-
-  #photo-file-input { display: none; }
-
-  /* ── CIPHER CONSOLE FIXES ── */
-  .morse-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    width: 100%;
-  }
-
+  /* Sunflowers: slightly offset phase */
   .side-sunflower {
-    width: clamp(35px, 10vw, 45px);
+    width: clamp(40px,11vw,55px);
     height: auto;
-    opacity: 0.75;
+    opacity: 0.85;
     display: block;
     user-select: none;
     flex-shrink: 0;
+    filter: drop-shadow(0 0 7px rgba(194,167,108,0.5)) drop-shadow(0 0 16px rgba(194,167,108,0.2));
+    animation: floatBounce 4.2s ease-in-out infinite;
+  }
+  .side-sunflower:last-child { animation-delay: 0.6s; }
+
+  .invite-msg {
+    font-size:1.2rem;line-height:1.9;
+    color:var(--text-light);letter-spacing:0.02em;
+    font-family:var(--font-body);
+  }
+
+  /* ─── ITINERARY ─── */
+  .timeline-container { display:flex;flex-direction:column;gap:1.8rem; }
+
+  .timeline-event {
+    text-align:center;padding-bottom:1.5rem;
+    border-bottom:1px solid rgba(201,168,76,0.1);
+  }
+  .timeline-event:last-child { padding-bottom:0;border-bottom:none; }
+
+  /* Edwardian Script for event titles */
+  .event-title {
+    font-family: var(--font-script);
+    font-size: 2.6rem;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.35rem;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .event-schedule {
+    font-size: 0.82rem;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.6rem;
+    font-family: var(--font-body);
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .event-location {
+    font-size:0.95rem;color:var(--text-muted);
+    line-height:1.6;margin-bottom:1.2rem;
+    font-family:var(--font-body);
+  }
+
+  .transit-grid { display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap; }
+
+  .transit-pill {
+    display:inline-flex;align-items:center;gap:0.5rem;
+    background:rgba(201,168,76,0.06);
+    border:1px solid rgba(201,168,76,0.2);
+    padding:0.4rem 1rem;border-radius:30px;
+    font-size:0.82rem;color:var(--text-light);
+    text-decoration:none;transition:all 0.3s ease;
+    font-family:var(--font-body);
+  }
+  .transit-pill:hover {
+    background:rgba(201,168,76,0.15);
+    border-color:var(--gold-light);transform:translateY(-2px);
+  }
+  .transit-pill svg { width:14px;height:14px;fill:var(--gold); }
+
+  /* ─── INTERACTIVE ─── */
+  .interactive-header { margin-bottom:1.8rem;text-align:center; }
+
+  .interactive-title {
+    font-family:var(--font-body);font-size:1.3rem;
+    letter-spacing:0.08em;color:var(--gold-light);font-weight:700;
+  }
+  .interactive-desc { font-size:0.95rem;color:var(--text-muted);margin-top:0.3rem; }
+
+  .input-capsule { position:relative;margin-bottom:1rem;width:100%; }
+  .input-icon {
+    position:absolute;left:18px;top:50%;transform:translateY(-50%);
+    color:var(--gold);font-size:1rem;pointer-events:none;
+  }
+  .luxury-input {
+    width:100%;background:rgba(0,0,0,0.25);
+    border:1px solid var(--panel-border);border-radius:50px;
+    padding:0.9rem 1.5rem 0.9rem 2.8rem;color:#fff;
+    font-family:var(--font-body);font-size:1rem;outline:none;
+    transition:all 0.3s ease;
+  }
+  .luxury-input::placeholder { color:rgba(196,168,130,0.4);font-style:italic; }
+
+  .action-button {
+    display:block;width:100%;padding:0.9rem 1.5rem;
+    background:linear-gradient(90deg,#947a44 0%,var(--gold) 50%,#947a44 100%);
+    background-size:200% auto;border:none;border-radius:50px;
+    color:#1a0214;font-family:var(--font-body);font-weight:700;
+    font-size:0.9rem;letter-spacing:0.1em;cursor:pointer;
+    transition:all 0.4s ease;box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  }
+  .action-button:hover {
+    background-position:right center;transform:translateY(-1px);
+    box-shadow:0 6px 20px rgba(194,167,108,0.25);
+  }
+  .action-button:disabled { background:#463b25;color:#8c7856;cursor:not-allowed;box-shadow:none; }
+
+  /* ─── PHOTO GRID ─── */
+  .photo-matrix { display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1rem; }
+  .photo-vault-slot {
+    aspect-ratio:1;background:rgba(0,0,0,0.3);
+    border:1px dashed var(--panel-border);border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;overflow:hidden;cursor:pointer;transition:all 0.3s ease;
+  }
+  .vault-plus { color:var(--gold);font-size:1.8rem;font-weight:300; }
+  .photo-vault-slot img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover; }
+  .vault-remove {
+    position:absolute;top:5px;right:5px;width:20px;height:20px;
+    background:#61133d;border:1px solid var(--gold);border-radius:50%;
+    color:var(--gold-light);font-size:11px;
+    display:flex;align-items:center;justify-content:center;z-index:3;
+  }
+  #photo-file-input { display:none; }
+
+  /* ─── MORSE CIPHER ─── */
+  .morse-wrapper {
+    display:flex;align-items:center;justify-content:space-between;
+    gap:0.5rem;width:100%;
   }
 
   .cipher-board {
-    flex: 1;
-    background: rgba(0, 0, 0, 0.2);
-    border: 1px solid var(--panel-border);
-    border-radius: 12px;
-    padding: 1.25rem 0.75rem;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
+    flex:1;background:rgba(0,0,0,0.2);
+    border:1px solid var(--panel-border);border-radius:12px;
+    padding:1.4rem 0.9rem 1rem;
+    display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;
+    user-select:none;
+  }
+
+  .morse-line {
+    display:flex;justify-content:center;
+    flex-wrap:wrap;gap:0.4rem;
+    margin:0.18rem 0;
+  }
+
+  /* Each token shows morse code; on click it flips to the letter */
+  .morse-token {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 5.5rem;
-    text-align: center;
-    overflow: hidden;
+    min-width: 2rem;
+    cursor: pointer;
+    padding: 0.15rem 0.3rem;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+    position: relative;
   }
+  .morse-token:hover { background: rgba(194,167,108,0.08); }
 
-  .cipher-dots {
-    font-size: clamp(1rem, 3.5vw, 1.25rem);
+  .token-morse {
+    font-size: clamp(0.85rem, 2.8vw, 1.05rem);
     color: var(--gold);
-    letter-spacing: 0.05em;
-    line-height: 1.6;
-    transition: opacity 0.3s ease;
-    width: 100%;
-    word-break: break-all;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    transition: opacity 0.25s ease, transform 0.25s ease;
   }
 
-  .cipher-revealed {
+  .token-letter {
     position: absolute;
-    font-family: 'Cinzel', serif;
-    font-size: clamp(1.1rem, 3.8vw, 1.4rem);
-    color: var(--gold);
-    letter-spacing: 0.06em;
+    inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
     opacity: 0;
-    width: 100%;
-    padding: 0 0.5rem;
-    box-sizing: border-box;
-    white-space: normal;
-    word-wrap: break-word;
-    transition: opacity 0.3s ease;
+    transform: scale(0.6);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    text-shadow: 0 0 10px rgba(243,225,182,0.6);
   }
 
-  .cipher-board.revealed .cipher-dots { opacity: 0; }
-  .cipher-board.revealed .cipher-revealed { opacity: 1; }
+  /* Revealed state: hide morse, show letter */
+  .morse-token.revealed .token-morse  { opacity: 0; transform: scale(0.6); }
+  .morse-token.revealed .token-letter { opacity: 1; transform: scale(1); }
 
+  /* Word gap line */
+  .morse-gap { height: 0.35rem; width: 100%; }
+
+  .cipher-hint {
+    font-size:0.72rem;color:var(--text-muted);margin-top:0.8rem;
+    font-family:var(--font-body);font-style:italic;letter-spacing:0.05em;
+  }
+
+  /* ─── STATUS / PROGRESS ─── */
   .status-msg {
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: 0.6rem;
-    min-height: 1.2rem;
+    font-size:0.9rem;text-align:center;margin-top:0.6rem;min-height:1.2rem;
+    font-family:var(--font-body);
   }
-  .status-msg.success { color: #a4deb1; }
-  .status-msg.error   { color: #ff9e9e; }
+  .status-msg.success { color:#a4deb1; }
+  .status-msg.error   { color:#ff9e9e; }
 
   .progress-wrap {
-    height: 3px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 4px;
-    margin: 0.6rem 0;
-    overflow: hidden;
-    display: none;
+    height:3px;background:rgba(255,255,255,0.05);border-radius:4px;
+    margin:0.6rem 0;overflow:hidden;display:none;
   }
-  .progress-bar {
-    height: 100%;
-    background: var(--gold);
-    width: 0%;
-    transition: width 0.3s ease;
-  }
+  .progress-bar { height:100%;background:var(--gold);width:0%;transition:width 0.3s ease; }
 
-  .footer {
-    text-align: center;
-    margin-top: 3rem;
-  }
-  .footer-emblem {
-    width: 55px;
-    opacity: 0.3;
-  }
+  .footer { text-align:center;margin-top:3rem; }
 </style>
 </head>
 <body>
 
+<!-- ═══════════ HERO ═══════════ -->
 <div class="hero">
-  <div class="hero-bg-photo"></div>
-  <div class="hero-darkener"></div>
-  
-  <div class="hero-title-container">
-    <span class="hero-pre">Save The Date</span>
-    <h1 class="hero-title">Keerthi<span class="hero-ampersand">&</span>Savit</h1>
+  <!-- Photo fills full width naturally -->
+  <div class="hero-photo-wrap">
+    <img src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/LampPhoto.png"
+         alt="Keerthi and Savit wedding"/>
+  </div>
+  <!-- Name panel seamlessly continues below the faded photo -->
+  <div class="hero-name-panel">
+    <div class="hero-names">
+      Keerthi <span class="hero-amp">&amp;</span> Savit
+    </div>
+    <div class="hero-rule"></div>
   </div>
 </div>
 
+<!-- ═══════════ MAIN ═══════════ -->
 <div class="main">
 
+  <!-- Invitation -->
   <div class="luxury-card invite-card">
-    <img class="invite-monogram" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
+    <img class="invite-monogram"
+         src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
     <p class="invite-msg">
       With lots of joy,<br/>
       we invite you to join us in celebrating<br/>
@@ -491,18 +430,18 @@
     </p>
   </div>
 
+  <!-- Timeline -->
   <div class="luxury-card timeline-container">
-    
+
     <div class="timeline-event">
       <h2 class="event-title">Engagement</h2>
-      <p class="event-schedule">Saturday | 22nd Aug | 6 PM onwards</p>
+      <p class="event-schedule">Saturday · 22nd Aug · 6 PM onwards</p>
     </div>
 
     <div class="timeline-event">
       <h2 class="event-title">Wedding</h2>
-      <p class="event-schedule">Sunday | 23rd Aug | 9 AM onwards</p>
+      <p class="event-schedule">Sunday · 23rd Aug · 9 AM onwards</p>
       <p class="event-location">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamilnadu</p>
-      
       <div class="transit-grid">
         <a class="transit-pill" href="https://maps.app.goo.gl/zdknLoc7TXDLQqWz7" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l8 2.5z"/></svg>
@@ -521,9 +460,8 @@
 
     <div class="timeline-event">
       <h2 class="event-title">Reception</h2>
-      <p class="event-schedule">Saturday | 29th Aug | 4 PM onwards</p>
+      <p class="event-schedule">Saturday · 29th Aug · 4 PM onwards</p>
       <p class="event-location">At Green Valley Convention Centre,<br/>Adoor, Kerala</p>
-      
       <div class="transit-grid">
         <a class="transit-pill" href="https://maps.app.goo.gl/rZEzb8K5FoxUBF3ZA" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L14 19v-5.5l8 2.5z"/></svg>
@@ -542,260 +480,246 @@
 
   </div>
 
+  <!-- Song -->
   <div class="luxury-card">
     <div class="interactive-header">
-      <img class="interactive-icon" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Gramaphone.png" alt=""/>
+      <img class="interactive-icon"
+           src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Gramaphone.png" alt=""/>
       <h3 class="interactive-title">Wedding Soundtrack</h3>
       <p class="interactive-desc">Dedicate a track to our celebration playlist</p>
     </div>
-    
     <div class="input-capsule">
       <span class="input-icon">♪</span>
       <input class="luxury-input" id="guest-name" type="text" placeholder="Your name" maxlength="80"/>
     </div>
-
     <div class="input-capsule">
       <span class="input-icon">♦</span>
       <input class="luxury-input" id="song-input" type="text" placeholder="Song name · Artist" maxlength="120"/>
     </div>
-
     <button class="action-button" id="song-btn" onclick="submitSong()">Dedicate Song</button>
     <p class="status-msg" id="song-status"></p>
   </div>
 
+  <!-- Photos -->
   <div class="luxury-card">
     <div class="interactive-header">
-      <img class="interactive-icon" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Camera.png" alt=""/>
+      <img class="interactive-icon"
+           src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Camera.png" alt=""/>
       <h3 class="interactive-title">Share Memories</h3>
       <p class="interactive-desc">Upload photos captured throughout our special days</p>
     </div>
-
     <div class="photo-matrix" id="photo-grid"></div>
     <input type="file" id="photo-file-input" accept="image/*" multiple/>
-    
     <div class="progress-wrap" id="progress-wrap">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
-    
     <button class="action-button" id="photo-btn" onclick="submitPhotos()" disabled>Upload Memories</button>
     <p class="status-msg" id="photo-status"></p>
   </div>
 
+  <!-- Morse Cipher -->
   <div class="morse-wrapper">
-    <img class="side-sunflower" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/QuoteSunflowers.png" alt=""/>
-    
-    <div class="cipher-board" id="cipher-board" onclick="triggerMorseReveal()">
-      <div class="cipher-dots">
-        -... . .-.. .. . ...- .<br/>
-        .. -.<br/>
-        -- .. .-. .- -.-. .-.. . ...
-      </div>
-      <div class="cipher-revealed" id="cipher-revealed"></div>
+    <img class="side-sunflower"
+         src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/QuoteSunflowers.png" alt=""/>
+    <div class="cipher-board" id="cipher-board">
+      <div id="morse-tokens"></div>
+      <p class="cipher-hint">tap each symbol to reveal</p>
     </div>
-
-    <img class="side-sunflower" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/QuoteSunflowers.png" alt=""/>
+    <img class="side-sunflower"
+         src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/QuoteSunflowers.png" alt=""/>
   </div>
 
   <div class="footer">
-    <img class="footer-emblem" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
+    <img class="footer-emblem"
+         src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
   </div>
 
-</div>
+</div><!-- /main -->
 
 <script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzEnofmfADualNvhmbwuue62DSpGwZi0YQuo_0FuWQbTcvzYl2fuyB5MsCJXSmQRwe9/exec";
-  const MAX_PHOTOS = 6;
-  let selectedFiles = [];
+/* ══════════ MORSE CIPHER ══════════ */
+const MORSE_MAP = {
+  '.-':'A','-...':'B','-.-.':'C','-..':'D','.':'E','..-.':'F',
+  '--.':'G','....':'H','..':'I','.---':'J','-.-':'K','.-..':'L',
+  '--':'M','-.':'N','---':'O','.--.':'P','--.-':'Q','.-.':'R',
+  '...':'S','-':'T','..-':'U','...-':'V','.--':'W','-..-':'X',
+  '-.--':'Y','--..':'Z'
+};
 
-  /* Morse Configuration Layer */
-  const TARGET_WORD = "BELIEVE IN MIRACLES";
-  let cipherTimer = null;
-  let isRevealing = false;
+const LETTER_TO_MORSE = {};
+Object.entries(MORSE_MAP).forEach(([m,l]) => { LETTER_TO_MORSE[l] = m; });
 
-  function triggerMorseReveal() {
-    if (isRevealing) return;
-    isRevealing = true;
-    
-    const container = document.getElementById("cipher-board");
-    const output = document.getElementById("cipher-revealed");
-    
-    container.classList.add("revealed");
-    output.textContent = "";
-    
-    let index = 0;
-    clearInterval(cipherTimer);
-    
-    cipherTimer = setInterval(() => {
-      if (index < TARGET_WORD.length) {
-        output.textContent += TARGET_WORD[index];
-        index++;
-      } else {
-        clearInterval(cipherTimer);
-        setTimeout(() => {
-          container.classList.remove("revealed");
-          output.textContent = "";
-          isRevealing = false;
-        }, 5000);
-      }
-    }, 120);
-  }
+const PHRASE = "BELIEVE IN MIRACLES";
 
-  function renderGrid() {
-    const grid = document.getElementById("photo-grid");
-    grid.innerHTML = "";
-    for (let i = 0; i < MAX_PHOTOS; i++) {
-      const slot = document.createElement("div");
-      slot.className = "photo-vault-slot";
-      if (selectedFiles[i]) {
-        const img = document.createElement("img");
-        img.src = URL.createObjectURL(selectedFiles[i]);
-        img.alt = "Preview";
-        slot.appendChild(img);
-        const rm = document.createElement("div");
-        rm.className = "vault-remove";
-        rm.innerHTML = "×";
-        rm.onclick = (e) => { e.stopPropagation(); removePhoto(i); };
-        slot.appendChild(rm);
-      } else {
-        slot.innerHTML = '<span class="vault-plus">+</span>';
-        slot.onclick = () => openPicker();
-      }
-      grid.appendChild(slot);
+function buildMorseTokens() {
+  const container = document.getElementById('morse-tokens');
+  container.innerHTML = '';
+
+  PHRASE.split(' ').forEach((word, wi, words) => {
+    const line = document.createElement('div');
+    line.className = 'morse-line';
+
+    [...word].forEach(letter => {
+      const code = LETTER_TO_MORSE[letter] || '?';
+
+      const tok = document.createElement('span');
+      tok.className = 'morse-token';
+
+      // Morse side
+      const m = document.createElement('span');
+      m.className = 'token-morse';
+      m.textContent = code;
+
+      // Letter side (overlaid, hidden until click)
+      const l = document.createElement('span');
+      l.className = 'token-letter';
+      l.textContent = letter;
+
+      tok.appendChild(m);
+      tok.appendChild(l);
+
+      // Click: toggle revealed — letter replaces morse in-place
+      tok.addEventListener('click', () => tok.classList.toggle('revealed'));
+
+      line.appendChild(tok);
+    });
+
+    container.appendChild(line);
+
+    // Small gap row between words
+    if (wi < words.length - 1) {
+      const gap = document.createElement('div');
+      gap.className = 'morse-gap';
+      container.appendChild(gap);
     }
-    document.getElementById("photo-btn").disabled = selectedFiles.length === 0;
-  }
-
-  function openPicker() {
-    if (selectedFiles.length >= MAX_PHOTOS) return;
-    const fileInput = document.getElementById("photo-file-input");
-    fileInput.value = "";
-    fileInput.click();
-  }
-
-  document.getElementById("photo-file-input").addEventListener("change", function () {
-    const remaining = MAX_PHOTOS - selectedFiles.length;
-    const newFiles = Array.from(this.files).slice(0, remaining);
-    selectedFiles = [...selectedFiles, ...newFiles];
-    renderGrid();
   });
+}
 
-  function removePhoto(index) {
-    selectedFiles.splice(index, 1);
-    renderGrid();
+buildMorseTokens();
+
+/* ══════════ PHOTO GRID ══════════ */
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzEnofmfADualNvhmbwuue62DSpGwZi0YQuo_0FuWQbTcvzYl2fuyB5MsCJXSmQRwe9/exec";
+const MAX_PHOTOS = 6;
+let selectedFiles = [];
+
+function renderGrid() {
+  const grid = document.getElementById("photo-grid");
+  grid.innerHTML = "";
+  for (let i = 0; i < MAX_PHOTOS; i++) {
+    const slot = document.createElement("div");
+    slot.className = "photo-vault-slot";
+    if (selectedFiles[i]) {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(selectedFiles[i]);
+      img.alt = "Preview";
+      slot.appendChild(img);
+      const rm = document.createElement("div");
+      rm.className = "vault-remove";
+      rm.innerHTML = "×";
+      rm.onclick = e => { e.stopPropagation(); removePhoto(i); };
+      slot.appendChild(rm);
+    } else {
+      slot.innerHTML = '<span class="vault-plus">+</span>';
+      slot.onclick = () => openPicker();
+    }
+    grid.appendChild(slot);
   }
+  document.getElementById("photo-btn").disabled = selectedFiles.length === 0;
+}
 
+function openPicker() {
+  if (selectedFiles.length >= MAX_PHOTOS) return;
+  const fi = document.getElementById("photo-file-input");
+  fi.value = ""; fi.click();
+}
+
+document.getElementById("photo-file-input").addEventListener("change", function() {
+  const rem = MAX_PHOTOS - selectedFiles.length;
+  selectedFiles = [...selectedFiles, ...Array.from(this.files).slice(0, rem)];
   renderGrid();
+});
 
-  function resizeImage(file, maxPx = 1400) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
-          const canvas = document.createElement("canvas");
-          canvas.width = Math.round(img.width * scale);
-          canvas.height = Math.round(img.height * scale);
-          canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.83);
-        };
-        img.src = e.target.result;
+function removePhoto(i) { selectedFiles.splice(i,1); renderGrid(); }
+renderGrid();
+
+function resizeImage(file, maxPx=1400) {
+  return new Promise(res => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const s = Math.min(1, maxPx / Math.max(img.width, img.height));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.width*s); c.height = Math.round(img.height*s);
+        c.getContext("2d").drawImage(img,0,0,c.width,c.height);
+        c.toBlob(blob => res(blob),"image/jpeg",0.83);
       };
-      reader.readAsDataURL(file);
-    });
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function blobToBase64(blob) {
+  return new Promise(res => {
+    const r = new FileReader();
+    r.onload = e => res(e.target.result.split(",")[1]);
+    r.readAsDataURL(blob);
+  });
+}
+
+async function submitSong() {
+  const n = document.getElementById("guest-name");
+  const s = document.getElementById("song-input");
+  const btn = document.getElementById("song-btn");
+  if (!n.value.trim()) { setStatus("song-status","Please enter your name.","error"); return; }
+  if (!s.value.trim()) { setStatus("song-status","Please enter a song name.","error"); return; }
+  btn.disabled = true; btn.textContent = "Processing…"; setStatus("song-status","","");
+  try {
+    await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({type:"song",song:`${n.value.trim()}: ${s.value.trim()}`})});
+    n.value=""; s.value="";
+    btn.textContent="Dedicate Song"; btn.disabled=false;
+    setStatus("song-status","Added to our soundtrack, thank you!","success");
+    setTimeout(()=>setStatus("song-status","",""),5000);
+  } catch(e) {
+    btn.textContent="Dedicate Song"; btn.disabled=false;
+    setStatus("song-status","Something went wrong. Please try again.","error");
   }
+}
 
-  function blobToBase64(blob) {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onload = (e) => resolve(e.target.result.split(",")[1]);
-      reader.readAsDataURL(blob);
-    });
-  }
-
-  async function submitSong() {
-    const nameEl = document.getElementById("guest-name");
-    const songEl = document.getElementById("song-input");
-    const btn    = document.getElementById("song-btn");
-
-    const name = nameEl.value.trim();
-    const song = songEl.value.trim();
-
-    if (!name) { setStatus("song-status", "Please enter your name.", "error"); return; }
-    if (!song) { setStatus("song-status", "Please enter a song name.", "error"); return; }
-
-    btn.disabled = true;
-    btn.textContent = "Processing Entry...";
-    setStatus("song-status", "", "");
-
-    const entry = `${name}: ${song}`;
-
+async function submitPhotos() {
+  if (!selectedFiles.length) return;
+  const btn=document.getElementById("photo-btn");
+  const pw=document.getElementById("progress-wrap"),pb=document.getElementById("progress-bar");
+  btn.disabled=true; pw.style.display="block"; setStatus("photo-status","","");
+  let uploaded=0;
+  for (let i=0;i<selectedFiles.length;i++) {
     try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "song", song: entry })
-      });
-      nameEl.value = "";
-      songEl.value = "";
-      btn.textContent = "Dedicate Song";
-      btn.disabled = false;
-      setStatus("song-status", "Added to our soundtrack, thank you!", "success");
-      setTimeout(() => setStatus("song-status", "", ""), 5000);
-    } catch (err) {
-      btn.textContent = "Dedicate Song";
-      btn.disabled = false;
-      setStatus("song-status", "Something went wrong. Please try again.", "error");
-    }
+      const resized=await resizeImage(selectedFiles[i]);
+      const b64=await blobToBase64(resized);
+      await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({type:"photo",filename:`wedding_photo_${Date.now()}_${i+1}.jpg`,filedata:b64,mimetype:"image/jpeg"})});
+      uploaded++;
+      pb.style.width=`${(uploaded/selectedFiles.length)*100}%`;
+    } catch(e){console.error(e);}
   }
+  setTimeout(()=>{
+    pw.style.display="none"; pb.style.width="0%";
+    selectedFiles=[]; renderGrid(); btn.disabled=true;
+    setStatus("photo-status",`${uploaded} memory shared into our archive!`,"success");
+    setTimeout(()=>setStatus("photo-status","",""),6000);
+  },400);
+}
 
-  async function submitPhotos() {
-    if (selectedFiles.length === 0) return;
-    const btn          = document.getElementById("photo-btn");
-    const progressWrap = document.getElementById("progress-wrap");
-    const progressBar  = document.getElementById("progress-bar");
+function setStatus(id,msg,type) {
+  const el=document.getElementById(id);
+  el.textContent=msg;
+  el.className="status-msg"+(type?" "+type:"");
+}
 
-    btn.disabled = true;
-    progressWrap.style.display = "block";
-    setStatus("photo-status", "", "");
-
-    let uploaded = 0;
-    for (let i = 0; i < selectedFiles.length; i++) {
-      try {
-        const resized  = await resizeImage(selectedFiles[i]);
-        const b64      = await blobToBase64(resized);
-        const filename = `wedding_photo_${Date.now()}_${i + 1}.jpg`;
-        await fetch(SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ type: "photo", filename, filedata: b64, mimetype: "image/jpeg" })
-        });
-        uploaded++;
-        progressBar.style.width = `${(uploaded / selectedFiles.length) * 100}%`;
-      } catch (err) { console.error(err); }
-    }
-
-    setTimeout(() => {
-      progressWrap.style.display = "none";
-      progressBar.style.width = "0%";
-      selectedFiles = [];
-      renderGrid();
-      btn.disabled = true;
-      setStatus("photo-status", `${uploaded} memory shared into our archive!`, "success");
-      setTimeout(() => setStatus("photo-status", "", ""), 6000);
-    }, 400);
-  }
-
-  function setStatus(id, msg, type) {
-    const el = document.getElementById(id);
-    el.textContent = msg;
-    el.className = "status-msg" + (type ? " " + type : "");
-  }
-
-  document.getElementById("song-input").addEventListener("keydown", e => { if (e.key === "Enter") submitSong(); });
-  document.getElementById("guest-name").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("song-input").focus(); });
+document.getElementById("song-input").addEventListener("keydown",e=>{if(e.key==="Enter")submitSong();});
+document.getElementById("guest-name").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("song-input").focus();});
 </script>
 </body>
 </html>
