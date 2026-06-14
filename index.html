@@ -4,18 +4,17 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Keerthi & Savit</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --maroon: #6b1d3e;
-    --maroon-dark: #4d1530;
-    --maroon-deeper: #3a0f24;
+    --maroon: #7a1f4c;
+    --maroon-dark: #5c1538;
+    --maroon-deeper: #3e0d26;
     --gold: #c9a84c;
     --gold-light: #e2c97e;
     --gold-pale: #f0e2b8;
-    --cream: #fdf6e3;
     --text-light: #f5e6c8;
     --text-muted: #c4a882;
   }
@@ -29,391 +28,400 @@
     font-weight: 300;
     min-height: 100vh;
     overflow-x: hidden;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   /* ── HERO ── */
   .hero {
     position: relative;
     width: 100%;
-    min-height: 380px;
+    min-height: 320px;
+    overflow: hidden;
     background: var(--maroon-dark);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 2.5rem;
+  }
+
+  /* top-right olive/gold photo panel */
+  .hero-photo-panel {
+    position: absolute;
+    top: 0; right: 0;
+    width: 62%;
+    height: 100%;
+    background: linear-gradient(160deg, #8a7a50 0%, #6b6040 40%, #4a4530 100%);
+    clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
     overflow: hidden;
   }
 
-  .hero-bg {
+  /* diagonal gold lines over hero */
+  .hero-lines {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 80%, rgba(107,29,62,0.6) 0%, transparent 50%);
-  }
-
-  .hero-img-placeholder {
-    position: absolute;
-    top: 0; right: 0;
-    width: 55%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(60,18,35,0.7) 0%, rgba(40,12,24,0.9) 100%);
-    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
-
-  .hero-floral {
-    position: absolute;
-    top: -10px; left: 10px;
-    font-size: 4rem;
-    opacity: 0.25;
-    transform: rotate(-15deg);
-    line-height: 1;
-    filter: sepia(1) hue-rotate(330deg);
-  }
-
-  .hero-names {
-    position: relative;
-    text-align: right;
-    padding-right: 2rem;
-    width: 100%;
+    pointer-events: none;
     z-index: 2;
   }
 
+  /* baby's breath top-left */
+  .hero-floral {
+    position: absolute;
+    top: -8px;
+    left: 4px;
+    width: 120px;
+    z-index: 3;
+    opacity: 0.95;
+  }
+
+  /* wax seal */
+  .hero-seal {
+    position: absolute;
+    left: 18px;
+    bottom: 28px;
+    width: 80px;
+    z-index: 4;
+  }
+
+  /* names top-right */
+  .hero-names {
+    position: absolute;
+    top: 28px;
+    right: 18px;
+    text-align: right;
+    z-index: 3;
+  }
+
   .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 8vw, 4.5rem);
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    color: var(--gold-pale);
-    line-height: 1.1;
-    text-transform: uppercase;
-  }
-
-  .hero-ampersand {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    color: var(--gold);
-    letter-spacing: 0.1em;
     display: block;
-    margin: 0.2rem 0;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 9vw, 3.8rem);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: #f5e6c8;
+    text-transform: uppercase;
+    line-height: 1.05;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
   }
 
-  /* ── GOLD LINE ── */
-  .gold-line {
+  .hero-amp {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 6vw, 2.6rem);
+    color: var(--gold-pale);
+    letter-spacing: 0.12em;
+    margin: 0.15rem 0;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+
+  /* ── GOLD DIAGONAL LINES SVG ── */
+  .hero-lines svg {
+    width: 100%; height: 100%;
+  }
+
+  /* ── GOLD RULE ── */
+  .gold-rule {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
   }
 
-  /* ── MONOGRAM SEAL ── */
-  .seal-wrap {
-    display: flex;
-    justify-content: flex-start;
-    padding: 2rem 2rem 0;
+  /* ── MAIN WRAPPER ── */
+  .main {
+    padding: 0 1.6rem;
   }
 
-  .seal {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border: 1.5px solid var(--gold);
+  /* ── INVITE SECTION ── */
+  .invite-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: var(--maroon-dark);
-    position: relative;
+    gap: 1.4rem;
+    padding: 2.2rem 0 2rem;
   }
 
-  .seal svg { width: 36px; height: 36px; }
-
-  /* ── MAIN CONTENT ── */
-  .main {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  /* ── INVITE TEXT ── */
-  .invite-section {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2rem 0 2.5rem;
-  }
-
-  .monogram-left {
+  .invite-logo {
+    width: 58px;
     flex-shrink: 0;
-    padding-top: 4px;
+    opacity: 0.9;
   }
-
-  .monogram-left svg { width: 48px; height: 64px; opacity: 0.85; }
 
   .invite-text {
     font-size: 1.05rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--text-light);
     font-weight: 300;
   }
 
-  /* ── DIVIDER HEART ── */
-  .heart-divider {
+  /* ── VERTICAL GOLD LINE (centre spine) ── */
+  .spine-wrap {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
   }
 
-  .heart-divider::before,
-  .heart-divider::after {
-    content: '';
-    flex: 1;
-    height: 0.5px;
-    background: linear-gradient(90deg, transparent, var(--gold));
+  /* ── EVENT ── */
+  .events-section {
+    padding: 0.5rem 0 1rem;
   }
 
-  .heart-divider::after {
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-
-  .heart-icon { color: var(--gold); font-size: 0.7rem; }
-
-  /* ── EVENT SECTIONS ── */
-  .event {
-    padding: 1.5rem 0;
-    border-left: none;
-  }
-
-  .event-bullet {
+  .event-row {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
+    gap: 0.8rem;
+    padding: 1.2rem 0 0.2rem;
   }
 
-  .bullet-heart {
+  .event-heart {
     color: var(--gold);
-    font-size: 0.6rem;
-    margin-top: 0.55rem;
+    font-size: 0.65rem;
+    margin-top: 0.7rem;
     flex-shrink: 0;
   }
 
-  .event-name {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.6rem;
+  .event-body { flex: 1; }
+
+  .event-name-script {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
     color: var(--gold-light);
-    font-weight: 400;
     line-height: 1.2;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+
+  .event-name-plain {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-light);
+    letter-spacing: 0.02em;
   }
 
   .event-date {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-light);
-    letter-spacing: 0.04em;
-    margin: 0.3rem 0 0.8rem 1.35rem;
+    letter-spacing: 0.03em;
+    margin: 0.25rem 0 0.6rem;
+    font-weight: 300;
   }
 
   .event-venue {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
-    margin: 0 0 0.75rem 1.35rem;
-    line-height: 1.5;
+    line-height: 1.55;
+    margin-bottom: 0.7rem;
   }
 
   .transport-row {
     display: flex;
-    gap: 1.25rem;
-    margin-left: 1.35rem;
+    gap: 1.1rem;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .transport-item {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
     font-size: 0.78rem;
     color: var(--text-muted);
     letter-spacing: 0.02em;
   }
 
   .transport-item svg {
-    width: 14px;
-    height: 14px;
-    opacity: 0.7;
-    flex-shrink: 0;
+    width: 13px; height: 13px;
+    opacity: 0.75; flex-shrink: 0;
   }
 
-  /* ── SECTION SPACING ── */
-  .section { padding: 2.5rem 0; }
+  .event-divider {
+    width: 100%;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
+    margin: 1rem 0 0;
+  }
 
-  /* ── GRAMOPHONE / SONG ── */
-  .gramophone-section {
+  /* ── SONG SECTION ── */
+  .song-section {
+    padding: 2.8rem 0 2rem;
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    padding: 2.5rem 0;
+    gap: 1.4rem;
   }
 
-  .gramophone-icon {
-    font-size: 3.5rem;
-    opacity: 0.75;
+  .song-img {
+    width: 110px;
     flex-shrink: 0;
-    filter: sepia(1) hue-rotate(330deg) saturate(1.5);
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
   }
 
-  .song-content { flex: 1; }
+  .song-right { flex: 1; }
 
   .song-prompt {
     font-size: 0.95rem;
     color: var(--text-light);
-    margin-bottom: 1rem;
-    line-height: 1.5;
     text-align: center;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
   }
 
-  .song-input-wrap {
+  .input-pill {
     position: relative;
     display: flex;
     align-items: center;
+    margin-bottom: 0.55rem;
   }
 
-  .song-icon {
+  .pill-icon {
     position: absolute;
     left: 14px;
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    pointer-events: none;
   }
 
-  .song-input {
+  .pill-input {
     width: 100%;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(201,168,76,0.3);
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(201,168,76,0.28);
     border-radius: 100px;
-    padding: 0.65rem 1rem 0.65rem 2.4rem;
+    padding: 0.6rem 1rem 0.6rem 2.3rem;
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     outline: none;
     transition: border-color 0.2s;
   }
 
-  .song-input::placeholder { color: var(--text-muted); font-style: italic; }
-  .song-input:focus { border-color: var(--gold); }
+  .pill-input::placeholder { color: var(--text-muted); font-style: italic; }
+  .pill-input:focus { border-color: rgba(201,168,76,0.7); }
 
   .btn-gold {
     display: block;
     width: 100%;
-    margin-top: 0.75rem;
-    padding: 0.6rem 1.5rem;
+    margin-top: 0.5rem;
+    padding: 0.58rem 1.2rem;
     background: transparent;
-    border: 1px solid var(--gold);
+    border: 1px solid rgba(201,168,76,0.55);
     border-radius: 100px;
     color: var(--gold-light);
     font-family: 'Cormorant Garamond', serif;
     font-size: 0.95rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s;
   }
 
-  .btn-gold:hover { background: rgba(201,168,76,0.15); }
-  .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-gold:hover { background: rgba(201,168,76,0.12); }
+  .btn-gold:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  .status-msg {
+    font-size: 0.82rem;
+    text-align: center;
+    margin-top: 0.45rem;
+    min-height: 1.1rem;
+    letter-spacing: 0.02em;
+  }
+  .status-msg.success { color: var(--gold-light); }
+  .status-msg.error   { color: #e08888; }
 
   /* ── PHOTO SECTION ── */
-  .camera-section {
+  .photo-section {
+    padding: 0.5rem 0 2.5rem;
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2.5rem 0;
+    gap: 1.4rem;
   }
 
-  .camera-icon {
-    font-size: 3.2rem;
-    opacity: 0.75;
+  .camera-img {
+    width: 90px;
     flex-shrink: 0;
-    padding-top: 0.2rem;
-    filter: sepia(1) hue-rotate(330deg) saturate(1.5);
+    margin-top: 1.6rem;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
   }
 
-  .photo-content { flex: 1; }
+  .photo-right { flex: 1; }
 
   .photo-prompt {
     font-size: 0.95rem;
     color: var(--text-light);
-    margin-bottom: 1rem;
-    line-height: 1.5;
     text-align: center;
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
   }
 
+  /* polaroid-style grid */
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-bottom: 0.75rem;
+    gap: 7px;
+    margin-bottom: 0.6rem;
   }
 
   .photo-slot {
     aspect-ratio: 1;
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 4px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.22);
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255,255,255,0.04);
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
     cursor: pointer;
     transition: border-color 0.2s;
   }
 
-  .photo-slot:hover { border-color: rgba(201,168,76,0.5); }
-
-  .photo-slot img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    position: absolute; inset: 0;
+  /* polaroid bottom bar */
+  .photo-slot::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 22%;
+    background: rgba(201,168,76,0.07);
+    border-top: 0.5px solid rgba(201,168,76,0.15);
   }
+
+  .photo-slot:hover { border-color: rgba(201,168,76,0.5); }
 
   .slot-plus {
     color: rgba(201,168,76,0.4);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: 300;
-    line-height: 1;
+    z-index: 1;
+  }
+
+  .photo-slot img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
   }
 
   .slot-remove {
     position: absolute;
     top: 3px; right: 3px;
-    width: 18px; height: 18px;
-    background: rgba(107,29,62,0.85);
+    width: 17px; height: 17px;
+    background: rgba(90,20,50,0.88);
     border: 1px solid var(--gold);
     border-radius: 50%;
     color: var(--gold);
-    font-size: 10px;
+    font-size: 9px;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
   }
 
   #photo-file-input { display: none; }
 
   .photo-count {
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--text-muted);
     text-align: center;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.03em;
+    margin-bottom: 0.45rem;
   }
 
-  /* ── PROGRESS BAR ── */
   .progress-wrap {
-    height: 3px;
+    height: 2px;
     background: rgba(255,255,255,0.1);
     border-radius: 2px;
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
     overflow: hidden;
     display: none;
   }
@@ -426,77 +434,61 @@
     transition: width 0.3s;
   }
 
-  /* ── STATUS MESSAGES ── */
-  .status-msg {
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 0.5rem;
-    min-height: 1.2rem;
-    letter-spacing: 0.02em;
-    transition: opacity 0.3s;
-  }
-
-  .status-msg.success { color: var(--gold-light); }
-  .status-msg.error { color: #e08080; }
-
-  /* ── QUOTE ── */
+  /* ── QUOTE SECTION ── */
   .quote-section {
-    padding: 2.5rem 0 1rem;
+    padding: 1.5rem 0 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
     position: relative;
   }
 
-  .quote-mark-left {
-    font-family: 'Playfair Display', serif;
-    font-size: 4rem;
-    color: var(--gold);
-    opacity: 0.4;
-    line-height: 0.6;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
+  .quote-body { flex: 1; }
 
   .quote-text {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 1rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
-    line-height: 1.8;
-    letter-spacing: 0.02em;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
   }
 
-  .quote-mark-right {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    color: var(--gold);
-    opacity: 0.5;
-    float: right;
-    line-height: 0.5;
-    margin-top: -0.5rem;
+  /* the big gold quote mark bottom-right */
+  .quote-mark-img {
+    width: 60px;
+    flex-shrink: 0;
+    align-self: flex-end;
+    opacity: 0.85;
   }
 
-  /* ── FOOTER MONOGRAM ── */
+  /* sunflower / daisy top-right of quote */
+  .quote-flower {
+    position: absolute;
+    right: -8px;
+    top: -10px;
+    width: 72px;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  /* ── FOOTER ── */
   .footer {
     text-align: center;
-    padding: 2.5rem 0 3rem;
+    padding: 2rem 0 3rem;
   }
 
-  .footer svg { width: 60px; height: 72px; opacity: 0.6; }
-
-  /* ── DECORATIVE FLORAL RIGHT ── */
-  .floral-right {
-    position: absolute;
-    right: 0.5rem;
-    font-size: 2.5rem;
-    opacity: 0.18;
-    transform: rotate(10deg);
+  .footer-logo {
+    width: 72px;
+    opacity: 0.65;
   }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 480px) {
-    .hero-names { padding-right: 1.2rem; }
-    .gramophone-section, .camera-section { flex-direction: column; align-items: center; }
-    .gramophone-icon, .camera-icon { font-size: 2.8rem; }
-    .song-content, .photo-content { width: 100%; }
+  @media (max-width: 400px) {
+    .song-section, .photo-section { flex-direction: column; align-items: center; }
+    .song-img { width: 85px; }
+    .camera-img { width: 75px; margin-top: 0; }
+    .song-right, .photo-right { width: 100%; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -506,31 +498,90 @@
 </head>
 <body>
 
-<!-- HERO -->
+<!-- ══ HERO ══ -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-img-placeholder"></div>
-  <div class="hero-floral">🌸</div>
+
+  <!-- olive/warm photo panel top-right -->
+  <div class="hero-photo-panel"></div>
+
+  <!-- diagonal gold lines -->
+  <div class="hero-lines">
+    <svg viewBox="0 0 500 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- main diagonal from bottom-left area to top-right -->
+      <line x1="60" y1="320" x2="420" y2="60" stroke="#c9a84c" stroke-width="0.6" opacity="0.55"/>
+      <line x1="80" y1="320" x2="440" y2="60" stroke="#c9a84c" stroke-width="0.3" opacity="0.25"/>
+      <!-- small horizontal accent near seal -->
+      <line x1="60" y1="245" x2="200" y2="245" stroke="#c9a84c" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <!-- baby's breath top-left using a free CDN SVG/PNG -->
+  <!-- Using an inline SVG to replicate white fluffy baby's breath -->
+  <div class="hero-floral">
+    <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+      <!-- stem -->
+      <line x1="60" y1="140" x2="60" y2="70" stroke="#b8a070" stroke-width="1.5"/>
+      <!-- branches -->
+      <line x1="60" y1="100" x2="30" y2="75" stroke="#b8a070" stroke-width="1"/>
+      <line x1="60" y1="90" x2="85" y2="65" stroke="#b8a070" stroke-width="1"/>
+      <line x1="60" y1="80" x2="40" y2="55" stroke="#b8a070" stroke-width="0.8"/>
+      <line x1="60" y1="80" x2="80" y2="50" stroke="#b8a070" stroke-width="0.8"/>
+      <line x1="30" y1="75" x2="15" y2="58" stroke="#b8a070" stroke-width="0.7"/>
+      <line x1="30" y1="75" x2="38" y2="55" stroke="#b8a070" stroke-width="0.7"/>
+      <line x1="85" y1="65" x2="75" y2="45" stroke="#b8a070" stroke-width="0.7"/>
+      <line x1="85" y1="65" x2="100" y2="48" stroke="#b8a070" stroke-width="0.7"/>
+      <line x1="40" y1="55" x2="28" y2="38" stroke="#b8a070" stroke-width="0.6"/>
+      <line x1="80" y1="50" x2="90" y2="32" stroke="#b8a070" stroke-width="0.6"/>
+      <!-- tiny white flowers -->
+      <g fill="white" opacity="0.88">
+        <circle cx="15" cy="55" r="4.5"/>
+        <circle cx="38" cy="52" r="4"/>
+        <circle cx="28" cy="35" r="4"/>
+        <circle cx="55" cy="45" r="3.5"/>
+        <circle cx="75" cy="42" r="4"/>
+        <circle cx="90" cy="29" r="4"/>
+        <circle cx="100" cy="45" r="3.5"/>
+        <circle cx="60" cy="68" r="3"/>
+        <circle cx="45" cy="60" r="3"/>
+        <circle cx="78" cy="56" r="3"/>
+        <circle cx="20" cy="68" r="3"/>
+        <circle cx="108" cy="38" r="3"/>
+        <circle cx="62" cy="30" r="3.5"/>
+        <circle cx="32" cy="48" r="3"/>
+      </g>
+      <!-- tiny petal details on larger ones -->
+      <g fill="white" opacity="0.5">
+        <circle cx="15" cy="51" r="2"/>
+        <circle cx="19" cy="55" r="2"/>
+        <circle cx="11" cy="55" r="2"/>
+        <circle cx="15" cy="59" r="2"/>
+        <circle cx="28" cy="31" r="2"/>
+        <circle cx="32" cy="35" r="2"/>
+        <circle cx="90" cy="25" r="2"/>
+        <circle cx="94" cy="29" r="2"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- wax seal -->
+  <img class="hero-seal" src="images/Wax Seal.png" alt="Wax Seal"/>
+
+  <!-- names -->
   <div class="hero-names">
     <span class="hero-name">Keerthi</span>
-    <span class="hero-ampersand">&amp; Savit</span>
+    <span class="hero-amp">&amp; Savit</span>
   </div>
-</div>
 
-<div class="gold-line"></div>
+</div><!-- /hero -->
 
+<div class="gold-rule"></div>
+
+<!-- ══ MAIN ══ -->
 <div class="main">
 
-  <!-- SEAL + INVITE -->
-  <div class="invite-section">
-    <div class="monogram-left">
-      <!-- K&S monogram SVG -->
-      <svg viewBox="0 0 48 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <text x="2" y="38" font-family="Playfair Display, serif" font-size="28" font-style="italic" fill="#c9a84c" opacity="0.9">K</text>
-        <text x="18" y="58" font-family="Playfair Display, serif" font-size="22" font-style="italic" fill="#c9a84c" opacity="0.7">S</text>
-        <line x1="8" y1="20" x2="40" y2="55" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
-      </svg>
-    </div>
+  <!-- INVITE -->
+  <div class="invite-row">
+    <img class="invite-logo" src="images/Logo.png" alt="K&S monogram"/>
     <p class="invite-text">
       With lots of joy,<br/>
       we invite you to join us in celebrating<br/>
@@ -538,160 +589,163 @@
     </p>
   </div>
 
-  <div class="gold-line"></div>
+  <div class="gold-rule"></div>
 
-  <!-- ENGAGEMENT -->
-  <div class="event">
-    <div class="heart-divider" style="margin: 1.5rem 0 1rem;"><span class="heart-icon">♥</span></div>
-    <div class="event-bullet">
-      <span class="bullet-heart">♥</span>
-      <span class="event-name">Engagement</span>
-    </div>
-    <p class="event-date">Saturday | 22nd Aug | 6 PM onwards</p>
-  </div>
+  <!-- EVENTS -->
+  <div class="events-section">
 
-  <!-- WEDDING -->
-  <div class="event">
-    <div class="heart-divider" style="margin: 0.5rem 0 1rem;"><span class="heart-icon">♥</span></div>
-    <div class="event-bullet">
-      <span class="bullet-heart">♥</span>
-      <span class="event-name">Wedding</span>
-    </div>
-    <p class="event-date">Sunday | 23rd Aug | 9 AM onwards</p>
-    <p class="event-venue">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamilnadu</p>
-    <div class="transport-row">
-      <div class="transport-item">
-        <!-- plane icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-        Madurai
-      </div>
-      <div class="transport-item">
-        <!-- train icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="3" width="16" height="13" rx="3"/>
-          <path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/>
-          <circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/>
-          <circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/>
-        </svg>
-        Satur / Sivakasi
-      </div>
-      <div class="transport-item">
-        <!-- bus icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/>
-          <circle cx="7" cy="18" r="1" fill="currentColor"/>
-          <circle cx="17" cy="18" r="1" fill="currentColor"/>
-        </svg>
-        Sivakasi
+    <!-- ENGAGEMENT -->
+    <div class="event-row">
+      <span class="event-heart">♥</span>
+      <div class="event-body">
+        <span class="event-name-script">Engagement</span>
+        <p class="event-date">Saturday | 22nd Aug | 6 PM onwards</p>
       </div>
     </div>
-  </div>
+    <div class="event-divider"></div>
 
-  <!-- RECEPTION -->
-  <div class="event">
-    <div class="heart-divider" style="margin: 1rem 0 1rem;"><span class="heart-icon">♥</span></div>
-    <div class="event-bullet">
-      <span class="bullet-heart">♥</span>
-      <span class="event-name">Reception</span>
-    </div>
-    <p class="event-date">Saturday | 29th Aug | 4 PM onwards</p>
-    <p class="event-venue">At Green Valley Convention Centre,<br/>Adoor, Kerala</p>
-    <div class="transport-row">
-      <div class="transport-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-        Trivandrum
-      </div>
-      <div class="transport-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="4" y="3" width="16" height="13" rx="3"/>
-          <path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/>
-          <circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/>
-          <circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/>
-        </svg>
-        Kayamkulam
-      </div>
-      <div class="transport-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/>
-          <circle cx="7" cy="18" r="1" fill="currentColor"/>
-          <circle cx="17" cy="18" r="1" fill="currentColor"/>
-        </svg>
-        Adoor
+    <!-- WEDDING -->
+    <div class="event-row">
+      <span class="event-heart">♥</span>
+      <div class="event-body">
+        <span class="event-name-script">Wedding</span>
+        <p class="event-date">Sunday | 23rd Aug | 9 AM onwards</p>
+        <p class="event-venue">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamilnadu</p>
+        <div class="transport-row">
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            Madurai
+          </div>
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
+            Satur / Sivakasi
+          </div>
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/><circle cx="7" cy="18" r="1" fill="currentColor"/><circle cx="17" cy="18" r="1" fill="currentColor"/></svg>
+            Sivakasi
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="event-divider"></div>
 
-  <div class="gold-line" style="margin-top: 1rem;"></div>
+    <!-- RECEPTION -->
+    <div class="event-row">
+      <span class="event-heart">♥</span>
+      <div class="event-body">
+        <span class="event-name-plain">Reception</span>
+        <p class="event-date">Saturday | 29th Aug | 4 PM onwards</p>
+        <p class="event-venue">At Green Valley Convention Centre,<br/>Adoor, Kerala</p>
+        <div class="transport-row">
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            Trivandrum
+          </div>
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
+            Kayamkulam
+          </div>
+          <div class="transport-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/><circle cx="7" cy="18" r="1" fill="currentColor"/><circle cx="17" cy="18" r="1" fill="currentColor"/></svg>
+            Adoor
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <!-- SONG DEDICATION -->
-  <div class="gramophone-section">
-    <div class="gramophone-icon">🎷</div>
-    <div class="song-content">
+  </div><!-- /events -->
+
+  <div class="gold-rule"></div>
+
+  <!-- ══ SONG SECTION ══ -->
+  <div class="song-section">
+    <img class="song-img" src="images/Gramaphone.png" alt="Gramophone"/>
+    <div class="song-right">
       <p class="song-prompt">Dedicate a song to our<br/>wedding soundtrack!</p>
-      <div class="song-input-wrap">
-        <span class="song-icon">♪</span>
-        <input
-          class="song-input"
-          id="song-input"
-          type="text"
-          placeholder="Song name · Artist"
-          maxlength="120"
-        />
+
+      <!-- Name input -->
+      <div class="input-pill">
+        <span class="pill-icon">👤</span>
+        <input class="pill-input" id="guest-name" type="text" placeholder="Your name" maxlength="80"/>
       </div>
+
+      <!-- Song input -->
+      <div class="input-pill">
+        <span class="pill-icon">♪</span>
+        <input class="pill-input" id="song-input" type="text" placeholder="Song name · Artist" maxlength="120"/>
+      </div>
+
       <button class="btn-gold" id="song-btn" onclick="submitSong()">Dedicate this song</button>
       <p class="status-msg" id="song-status"></p>
     </div>
   </div>
 
-  <div class="gold-line"></div>
+  <div class="gold-rule"></div>
 
-  <!-- PHOTO UPLOAD -->
-  <div class="camera-section">
-    <div class="camera-icon">📷</div>
-    <div class="photo-content">
+  <!-- ══ PHOTO SECTION ══ -->
+  <div class="photo-section">
+    <img class="camera-img" src="images/Camera.png" alt="Camera"/>
+    <div class="photo-right">
       <p class="photo-prompt">Share your wedding memories with us!</p>
 
-      <div class="photo-grid" id="photo-grid">
-        <!-- slots generated by JS -->
-      </div>
-
+      <div class="photo-grid" id="photo-grid"></div>
       <p class="photo-count" id="photo-count">0 / 6 photos selected</p>
-
       <input type="file" id="photo-file-input" accept="image/*" multiple/>
-
       <div class="progress-wrap" id="progress-wrap">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
-
-      <button class="btn-gold" id="photo-btn" onclick="submitPhotos()" disabled>Upload photos</button>
+      <button class="btn-gold" id="photo-btn" onclick="submitPhotos()" disabled>Upload memories</button>
       <p class="status-msg" id="photo-status"></p>
     </div>
   </div>
 
-  <div class="gold-line"></div>
+  <div class="gold-rule"></div>
 
-  <!-- QUOTE -->
-  <div class="quote-section" style="position:relative;">
-    <span class="quote-mark-left">"</span>
-    <p class="quote-text">
-      Two souls, one heart — bound by love,<br/>
-      blessed by family, celebrated by all.
-    </p>
-    <span class="quote-mark-right">"</span>
-    <div class="floral-right" style="top: 0.5rem;">🌼</div>
+  <!-- ══ QUOTE SECTION ══ -->
+  <div class="quote-section" style="padding: 2rem 0 1.5rem; position:relative;">
+    <!-- decorative flower top-right -->
+    <svg class="quote-flower" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- stem -->
+      <line x1="40" y1="100" x2="40" y2="55" stroke="#c9a84c" stroke-width="1.2"/>
+      <!-- leaves -->
+      <ellipse cx="28" cy="75" rx="10" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.8" transform="rotate(-30 28 75)"/>
+      <ellipse cx="52" cy="68" rx="10" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.8" transform="rotate(30 52 68)"/>
+      <!-- petals -->
+      <g fill="none" stroke="#c9a84c" stroke-width="0.9">
+        <ellipse cx="40" cy="38" rx="7" ry="14"/>
+        <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(45 40 38)"/>
+        <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(90 40 38)"/>
+        <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(135 40 38)"/>
+      </g>
+      <!-- centre -->
+      <circle cx="40" cy="38" r="6" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
+      <circle cx="40" cy="38" r="3" fill="#c9a84c" opacity="0.4"/>
+    </svg>
+
+    <div class="quote-body">
+      <!-- blurred/dotted text as in the original design -->
+      <p class="quote-text" style="font-size:0.82rem; color: rgba(196,168,130,0.55); letter-spacing:0.15em;">
+        · · · · · · · · · · · · · · ·
+      </p>
+      <p class="quote-text" style="margin: 0.4rem 0;">
+        · · · · · ·
+      </p>
+      <p class="quote-text" style="font-size:0.82rem; color: rgba(196,168,130,0.55); letter-spacing:0.12em;">
+        · · · · · · · · · · · · · · · · ·
+      </p>
+    </div>
+
+    <!-- big gold quote mark -->
+    <div style="align-self: flex-end; flex-shrink:0;">
+      <svg width="52" height="42" viewBox="0 0 52 42" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="38" font-family="Georgia, serif" font-size="52" fill="#c9a84c" opacity="0.82">"</text>
+      </svg>
+    </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- ══ FOOTER ══ -->
   <div class="footer">
-    <svg viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="2" y="44" font-family="Playfair Display, serif" font-size="32" font-style="italic" fill="#c9a84c" opacity="0.7">K</text>
-      <text x="22" y="64" font-family="Playfair Display, serif" font-size="26" font-style="italic" fill="#c9a84c" opacity="0.5">S</text>
-      <line x1="10" y1="22" x2="48" y2="62" stroke="#c9a84c" stroke-width="0.5" opacity="0.35"/>
-    </svg>
+    <img class="footer-logo" src="images/Logo.png" alt="K&S"/>
   </div>
 
 </div><!-- /main -->
@@ -701,21 +755,18 @@
   const MAX_PHOTOS = 6;
   let selectedFiles = [];
 
-  // ── PHOTO GRID INIT ──
+  // ── PHOTO GRID ──
   function renderGrid() {
     const grid = document.getElementById("photo-grid");
     grid.innerHTML = "";
     for (let i = 0; i < MAX_PHOTOS; i++) {
       const slot = document.createElement("div");
       slot.className = "photo-slot";
-      slot.dataset.index = i;
-
       if (selectedFiles[i]) {
         const img = document.createElement("img");
         img.src = URL.createObjectURL(selectedFiles[i]);
         img.alt = "Preview";
         slot.appendChild(img);
-
         const rm = document.createElement("div");
         rm.className = "slot-remove";
         rm.innerHTML = "✕";
@@ -753,8 +804,8 @@
 
   renderGrid();
 
-  // ── RESIZE IMAGE ──
-  function resizeImage(file, maxPx = 1200) {
+  // ── RESIZE ──
+  function resizeImage(file, maxPx = 1400) {
     return new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -765,7 +816,7 @@
           canvas.width = Math.round(img.width * scale);
           canvas.height = Math.round(img.height * scale);
           canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
-          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.82);
+          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.83);
         };
         img.src = e.target.result;
       };
@@ -783,31 +834,35 @@
 
   // ── SUBMIT SONG ──
   async function submitSong() {
-    const input = document.getElementById("song-input");
+    const nameEl = document.getElementById("guest-name");
+    const songEl = document.getElementById("song-input");
+    const btn    = document.getElementById("song-btn");
     const status = document.getElementById("song-status");
-    const btn = document.getElementById("song-btn");
-    const song = input.value.trim();
 
-    if (!song) {
-      setStatus("song-status", "Please enter a song name first.", "error");
-      return;
-    }
+    const name = nameEl.value.trim();
+    const song = songEl.value.trim();
+
+    if (!name) { setStatus("song-status", "Please enter your name.", "error"); return; }
+    if (!song) { setStatus("song-status", "Please enter a song name.", "error"); return; }
 
     btn.disabled = true;
     btn.textContent = "Sending…";
     setStatus("song-status", "", "");
+
+    const entry = `${name}: ${song}`;
 
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "song", song })
+        body: JSON.stringify({ type: "song", song: entry })
       });
-      input.value = "";
+      nameEl.value = "";
+      songEl.value = "";
       btn.textContent = "Dedicate this song";
       btn.disabled = false;
-      setStatus("song-status", "♪ Your song has been added to our soundtrack!", "success");
+      setStatus("song-status", "♪ Added to our soundtrack — thank you!", "success");
       setTimeout(() => setStatus("song-status", "", ""), 5000);
     } catch (err) {
       btn.textContent = "Dedicate this song";
@@ -819,41 +874,29 @@
   // ── SUBMIT PHOTOS ──
   async function submitPhotos() {
     if (selectedFiles.length === 0) return;
-
-    const btn = document.getElementById("photo-btn");
+    const btn          = document.getElementById("photo-btn");
     const progressWrap = document.getElementById("progress-wrap");
-    const progressBar = document.getElementById("progress-bar");
-    const status = document.getElementById("photo-status");
+    const progressBar  = document.getElementById("progress-bar");
 
     btn.disabled = true;
     progressWrap.style.display = "block";
     setStatus("photo-status", "", "");
 
     let uploaded = 0;
-
     for (let i = 0; i < selectedFiles.length; i++) {
       try {
-        const resized = await resizeImage(selectedFiles[i]);
-        const b64 = await blobToBase64(resized);
+        const resized  = await resizeImage(selectedFiles[i]);
+        const b64      = await blobToBase64(resized);
         const filename = `wedding_photo_${Date.now()}_${i + 1}.jpg`;
-
         await fetch(SCRIPT_URL, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            type: "photo",
-            filename,
-            filedata: b64,
-            mimetype: "image/jpeg"
-          })
+          body: JSON.stringify({ type: "photo", filename, filedata: b64, mimetype: "image/jpeg" })
         });
-
         uploaded++;
         progressBar.style.width = `${(uploaded / selectedFiles.length) * 100}%`;
-      } catch (err) {
-        console.error("Photo upload error:", err);
-      }
+      } catch (err) { console.error(err); }
     }
 
     setTimeout(() => {
@@ -863,13 +906,9 @@
       renderGrid();
       btn.disabled = true;
       setStatus("photo-status",
-        uploaded === 1
-          ? "📸 1 photo shared — thank you!"
-          : `📸 ${uploaded} photos shared — thank you!`,
-        "success"
-      );
+        `📸 ${uploaded} photo${uploaded !== 1 ? "s" : ""} shared — thank you!`, "success");
       setTimeout(() => setStatus("photo-status", "", ""), 6000);
-    }, 500);
+    }, 400);
   }
 
   function setStatus(id, msg, type) {
@@ -878,10 +917,9 @@
     el.className = "status-msg" + (type ? " " + type : "");
   }
 
-  // Song input — submit on Enter
-  document.getElementById("song-input").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") submitSong();
-  });
+  // Enter key on inputs
+  document.getElementById("song-input").addEventListener("keydown", e => { if (e.key === "Enter") submitSong(); });
+  document.getElementById("guest-name").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("song-input").focus(); });
 </script>
 </body>
 </html>
