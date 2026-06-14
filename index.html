@@ -9,9 +9,9 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --maroon: #7a1f4c;
-    --maroon-dark: #5c1538;
-    --maroon-deeper: #3e0d26;
+    --maroon: #62104f;
+    --maroon-dark: #4a0a3d;
+    --maroon-deeper: #330628;
     --gold: #c9a84c;
     --gold-light: #e2c97e;
     --gold-pale: #f0e2b8;
@@ -28,7 +28,7 @@
     font-weight: 300;
     min-height: 100vh;
     overflow-x: hidden;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
   }
 
@@ -36,23 +36,21 @@
   .hero {
     position: relative;
     width: 100%;
-    min-height: 320px;
+    min-height: 380px;
     overflow: hidden;
     background: var(--maroon-dark);
   }
 
-  /* top-right olive/gold photo panel */
   .hero-photo-panel {
     position: absolute;
     top: 0; right: 0;
-    width: 62%;
+    width: 55%;
     height: 100%;
     background: linear-gradient(160deg, #8a7a50 0%, #6b6040 40%, #4a4530 100%);
-    clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
     overflow: hidden;
   }
 
-  /* diagonal gold lines over hero */
   .hero-lines {
     position: absolute;
     inset: 0;
@@ -60,30 +58,28 @@
     z-index: 2;
   }
 
-  /* baby's breath top-left */
   .hero-floral {
     position: absolute;
-    top: -8px;
-    left: 4px;
-    width: 120px;
+    top: -5px;
+    left: 8px;
+    width: 100px;
     z-index: 3;
     opacity: 0.95;
   }
 
-  /* wax seal */
   .hero-seal {
     position: absolute;
-    left: 18px;
-    bottom: 28px;
-    width: 80px;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 90px;
     z-index: 4;
   }
 
-  /* names top-right */
   .hero-names {
     position: absolute;
-    top: 28px;
-    right: 18px;
+    top: 32px;
+    right: 24px;
     text-align: right;
     z-index: 3;
   }
@@ -91,88 +87,99 @@
   .hero-name {
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 9vw, 3.8rem);
-    font-weight: 500;
-    letter-spacing: 0.18em;
+    font-size: clamp(2.2rem, 8vw, 3.6rem);
+    font-weight: 400;
+    letter-spacing: 0.16em;
     color: #f5e6c8;
     text-transform: uppercase;
-    line-height: 1.05;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    line-height: 1.1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
   }
 
   .hero-amp {
     display: block;
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(1.6rem, 6vw, 2.6rem);
+    font-size: clamp(1.5rem, 5.5vw, 2.4rem);
     color: var(--gold-pale);
-    letter-spacing: 0.12em;
-    margin: 0.15rem 0;
-    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+    letter-spacing: 0.1em;
+    margin: 0.2rem 0;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
   }
 
-  /* ── GOLD DIAGONAL LINES SVG ── */
-  .hero-lines svg {
-    width: 100%; height: 100%;
+  /* ── VERTICAL GOLD LINE ── */
+  .spine {
+    position: absolute;
+    left: 3.5%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold) 80%, transparent 100%);
+    opacity: 0.7;
+    z-index: 1;
   }
 
-  /* ── GOLD RULE ── */
+  .spine-long {
+    position: absolute;
+    left: 3.5%;
+    width: 2px;
+    background: var(--gold);
+    opacity: 0.5;
+    z-index: 1;
+  }
+
   .gold-rule {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold) 70%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 25%, var(--gold) 75%, transparent 100%);
+    opacity: 0.6;
   }
 
-  /* ── MAIN WRAPPER ── */
   .main {
-    padding: 0 1.6rem;
+    padding: 0 2rem;
+    position: relative;
   }
 
   /* ── INVITE SECTION ── */
   .invite-row {
     display: flex;
-    align-items: center;
-    gap: 1.4rem;
-    padding: 2.2rem 0 2rem;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 2.4rem 0 1.8rem;
   }
 
   .invite-logo {
-    width: 58px;
+    width: 50px;
     flex-shrink: 0;
-    opacity: 0.9;
+    opacity: 0.85;
+    margin-top: 0.2rem;
   }
 
   .invite-text {
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-size: 1.02rem;
+    line-height: 1.8;
     color: var(--text-light);
     font-weight: 300;
+    letter-spacing: 0.01em;
   }
 
-  /* ── VERTICAL GOLD LINE (centre spine) ── */
-  .spine-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 0;
-  }
-
-  /* ── EVENT ── */
+  /* ── EVENTS ── */
   .events-section {
-    padding: 0.5rem 0 1rem;
+    padding: 1rem 0 0.5rem;
+    position: relative;
   }
 
   .event-row {
     display: flex;
     align-items: flex-start;
-    gap: 0.8rem;
-    padding: 1.2rem 0 0.2rem;
+    gap: 0.6rem;
+    padding: 1.5rem 0 0.3rem;
   }
 
   .event-heart {
     color: var(--gold);
-    font-size: 0.65rem;
-    margin-top: 0.7rem;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
     flex-shrink: 0;
   }
 
@@ -180,39 +187,40 @@
 
   .event-name-script {
     font-family: 'Great Vibes', cursive;
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: var(--gold-light);
-    line-height: 1.2;
+    line-height: 1.15;
     display: block;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.05rem;
+    font-weight: 400;
   }
 
   .event-name-plain {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 400;
     color: var(--text-light);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.03em;
   }
 
   .event-date {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     color: var(--text-light);
-    letter-spacing: 0.03em;
-    margin: 0.25rem 0 0.6rem;
+    letter-spacing: 0.02em;
+    margin: 0.15rem 0 0.4rem;
     font-weight: 300;
   }
 
   .event-venue {
     font-size: 0.88rem;
     color: var(--text-muted);
-    line-height: 1.55;
-    margin-bottom: 0.7rem;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
   }
 
   .transport-row {
     display: flex;
-    gap: 1.1rem;
+    gap: 1rem;
     flex-wrap: wrap;
     align-items: center;
   }
@@ -220,104 +228,115 @@
   .transport-item {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
-    font-size: 0.78rem;
+    gap: 0.35rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
 
   .transport-item svg {
-    width: 13px; height: 13px;
-    opacity: 0.75; flex-shrink: 0;
+    width: 14px; height: 14px;
+    opacity: 0.7; flex-shrink: 0;
   }
 
   .event-divider {
     width: 100%;
     height: 0.5px;
-    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.35), transparent);
-    margin: 1rem 0 0;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+    margin: 0.8rem 0 0;
+    opacity: 0.7;
   }
 
   /* ── SONG SECTION ── */
   .song-section {
-    padding: 2.8rem 0 2rem;
+    padding: 2.4rem 0 2rem;
     display: flex;
-    align-items: center;
-    gap: 1.4rem;
+    align-items: flex-start;
+    gap: 1.2rem;
   }
 
   .song-img {
-    width: 110px;
+    width: 100px;
     flex-shrink: 0;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+    margin-top: 0.5rem;
   }
 
   .song-right { flex: 1; }
 
   .song-prompt {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--text-light);
     text-align: center;
     line-height: 1.6;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
   }
 
   .input-pill {
     position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.6rem;
   }
 
   .pill-icon {
     position: absolute;
     left: 14px;
     color: var(--text-muted);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     pointer-events: none;
   }
 
   .pill-input {
     width: 100%;
-    background: rgba(255,255,255,0.09);
-    border: 1px solid rgba(201,168,76,0.28);
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(201,168,76,0.3);
     border-radius: 100px;
-    padding: 0.6rem 1rem 0.6rem 2.3rem;
+    padding: 0.65rem 1.2rem 0.65rem 2.4rem;
     color: var(--text-light);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.3s;
+    letter-spacing: 0.01em;
   }
 
   .pill-input::placeholder { color: var(--text-muted); font-style: italic; }
-  .pill-input:focus { border-color: rgba(201,168,76,0.7); }
+  .pill-input:focus { 
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(201,168,76,0.08);
+  }
 
   .btn-gold {
     display: block;
     width: 100%;
-    margin-top: 0.5rem;
-    padding: 0.58rem 1.2rem;
+    margin-top: 0.6rem;
+    padding: 0.65rem 1.2rem;
     background: transparent;
-    border: 1px solid rgba(201,168,76,0.55);
+    border: 1.5px solid rgba(201,168,76,0.5);
     border-radius: 100px;
     color: var(--gold-light);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.07em;
+    font-size: 0.96rem;
+    letter-spacing: 0.06em;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.3s;
+    font-weight: 300;
   }
 
-  .btn-gold:hover { background: rgba(201,168,76,0.12); }
+  .btn-gold:hover { 
+    background: rgba(201,168,76,0.12);
+    border-color: rgba(201,168,76,0.8);
+  }
   .btn-gold:disabled { opacity: 0.45; cursor: not-allowed; }
 
   .status-msg {
-    font-size: 0.82rem;
+    font-size: 0.84rem;
     text-align: center;
-    margin-top: 0.45rem;
+    margin-top: 0.5rem;
     min-height: 1.1rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
   .status-msg.success { color: var(--gold-light); }
   .status-msg.error   { color: #e08888; }
@@ -327,39 +346,39 @@
     padding: 0.5rem 0 2.5rem;
     display: flex;
     align-items: flex-start;
-    gap: 1.4rem;
+    gap: 1.2rem;
   }
 
   .camera-img {
-    width: 90px;
+    width: 85px;
     flex-shrink: 0;
-    margin-top: 1.6rem;
+    margin-top: 1.2rem;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
   }
 
   .photo-right { flex: 1; }
 
   .photo-prompt {
-    font-size: 0.95rem;
+    font-size: 0.98rem;
     color: var(--text-light);
     text-align: center;
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
     line-height: 1.5;
+    letter-spacing: 0.01em;
   }
 
-  /* polaroid-style grid */
   .photo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
-    margin-bottom: 0.6rem;
+    gap: 8px;
+    margin-bottom: 0.7rem;
   }
 
   .photo-slot {
     aspect-ratio: 1;
     background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.22);
-    border-radius: 3px;
+    border: 1.5px solid rgba(201,168,76,0.25);
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -369,21 +388,20 @@
     transition: border-color 0.2s;
   }
 
-  /* polaroid bottom bar */
   .photo-slot::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 22%;
-    background: rgba(201,168,76,0.07);
+    height: 20%;
+    background: rgba(201,168,76,0.06);
     border-top: 0.5px solid rgba(201,168,76,0.15);
   }
 
   .photo-slot:hover { border-color: rgba(201,168,76,0.5); }
 
   .slot-plus {
-    color: rgba(201,168,76,0.4);
-    font-size: 1.3rem;
+    color: rgba(201,168,76,0.35);
+    font-size: 1.4rem;
     font-weight: 300;
     z-index: 1;
   }
@@ -397,7 +415,7 @@
   .slot-remove {
     position: absolute;
     top: 3px; right: 3px;
-    width: 17px; height: 17px;
+    width: 18px; height: 18px;
     background: rgba(90,20,50,0.88);
     border: 1px solid var(--gold);
     border-radius: 50%;
@@ -411,10 +429,10 @@
   #photo-file-input { display: none; }
 
   .photo-count {
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
     text-align: center;
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.5rem;
   }
 
   .progress-wrap {
@@ -436,10 +454,10 @@
 
   /* ── QUOTE SECTION ── */
   .quote-section {
-    padding: 1.5rem 0 1rem;
+    padding: 2.2rem 0 1.8rem;
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: flex-end;
+    gap: 0.8rem;
     position: relative;
   }
 
@@ -448,28 +466,96 @@
   .quote-text {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
-    line-height: 1.9;
-    letter-spacing: 0.03em;
+    line-height: 1.8;
+    letter-spacing: 0.04em;
   }
 
-  /* the big gold quote mark bottom-right */
   .quote-mark-img {
-    width: 60px;
+    width: 50px;
     flex-shrink: 0;
-    align-self: flex-end;
-    opacity: 0.85;
+    opacity: 0.8;
+    margin-bottom: 0.3rem;
   }
 
-  /* sunflower / daisy top-right of quote */
   .quote-flower {
     position: absolute;
-    right: -8px;
-    top: -10px;
-    width: 72px;
+    right: -12px;
+    top: -8px;
+    width: 70px;
     opacity: 0.55;
     pointer-events: none;
+  }
+
+  /* ── MORSE CODE SECTION ── */
+  .morse-section {
+    padding: 2.2rem 0 1.8rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .morse-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .morse-code-container {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .morse-dots {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+    transition: opacity 0.3s ease;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .morse-translation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold-pale);
+    letter-spacing: 0.12em;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.5rem;
+    font-weight: 400;
+  }
+
+  .morse-code-container:hover .morse-dots {
+    opacity: 0;
+  }
+
+  .morse-code-container:hover .morse-translation {
+    opacity: 1;
+  }
+
+  .morse-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    margin-top: 0.8rem;
+    font-style: italic;
   }
 
   /* ── FOOTER ── */
@@ -479,16 +565,21 @@
   }
 
   .footer-logo {
-    width: 72px;
+    width: 65px;
     opacity: 0.65;
+    transition: opacity 0.3s;
   }
 
+  .footer-logo:hover { opacity: 0.85; }
+
   /* ── RESPONSIVE ── */
-  @media (max-width: 400px) {
+  @media (max-width: 480px) {
     .song-section, .photo-section { flex-direction: column; align-items: center; }
-    .song-img { width: 85px; }
+    .song-img { width: 80px; }
     .camera-img { width: 75px; margin-top: 0; }
     .song-right, .photo-right { width: 100%; }
+    .hero-seal { width: 75px; }
+    .main { padding: 0 1.4rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -500,88 +591,70 @@
 
 <!-- ══ HERO ══ -->
 <div class="hero">
-
-  <!-- olive/warm photo panel top-right -->
+  <div class="spine"></div>
+  
   <div class="hero-photo-panel"></div>
 
-  <!-- diagonal gold lines -->
   <div class="hero-lines">
-    <svg viewBox="0 0 500 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- main diagonal from bottom-left area to top-right -->
-      <line x1="60" y1="320" x2="420" y2="60" stroke="#c9a84c" stroke-width="0.6" opacity="0.55"/>
-      <line x1="80" y1="320" x2="440" y2="60" stroke="#c9a84c" stroke-width="0.3" opacity="0.25"/>
-      <!-- small horizontal accent near seal -->
-      <line x1="60" y1="245" x2="200" y2="245" stroke="#c9a84c" stroke-width="0.5" opacity="0.35"/>
+    <svg viewBox="0 0 500 380" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="80" y1="380" x2="420" y2="80" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+      <line x1="100" y1="380" x2="440" y2="80" stroke="#c9a84c" stroke-width="0.4" opacity="0.25"/>
+      <line x1="80" y1="220" x2="240" y2="220" stroke="#c9a84c" stroke-width="0.6" opacity="0.35"/>
     </svg>
   </div>
 
-  <!-- baby's breath top-left using a free CDN SVG/PNG -->
-  <!-- Using an inline SVG to replicate white fluffy baby's breath -->
   <div class="hero-floral">
-    <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-      <!-- stem -->
-      <line x1="60" y1="140" x2="60" y2="70" stroke="#b8a070" stroke-width="1.5"/>
-      <!-- branches -->
-      <line x1="60" y1="100" x2="30" y2="75" stroke="#b8a070" stroke-width="1"/>
-      <line x1="60" y1="90" x2="85" y2="65" stroke="#b8a070" stroke-width="1"/>
-      <line x1="60" y1="80" x2="40" y2="55" stroke="#b8a070" stroke-width="0.8"/>
-      <line x1="60" y1="80" x2="80" y2="50" stroke="#b8a070" stroke-width="0.8"/>
-      <line x1="30" y1="75" x2="15" y2="58" stroke="#b8a070" stroke-width="0.7"/>
-      <line x1="30" y1="75" x2="38" y2="55" stroke="#b8a070" stroke-width="0.7"/>
-      <line x1="85" y1="65" x2="75" y2="45" stroke="#b8a070" stroke-width="0.7"/>
-      <line x1="85" y1="65" x2="100" y2="48" stroke="#b8a070" stroke-width="0.7"/>
-      <line x1="40" y1="55" x2="28" y2="38" stroke="#b8a070" stroke-width="0.6"/>
-      <line x1="80" y1="50" x2="90" y2="32" stroke="#b8a070" stroke-width="0.6"/>
-      <!-- tiny white flowers -->
+    <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+      <line x1="50" y1="130" x2="50" y2="65" stroke="#b8a070" stroke-width="1.3"/>
+      <line x1="50" y1="100" x2="25" y2="75" stroke="#b8a070" stroke-width="0.9"/>
+      <line x1="50" y1="90" x2="75" y2="65" stroke="#b8a070" stroke-width="0.9"/>
+      <line x1="50" y1="80" x2="30" y2="55" stroke="#b8a070" stroke-width="0.7"/>
+      <line x1="50" y1="80" x2="70" y2="50" stroke="#b8a070" stroke-width="0.7"/>
       <g fill="white" opacity="0.88">
-        <circle cx="15" cy="55" r="4.5"/>
-        <circle cx="38" cy="52" r="4"/>
-        <circle cx="28" cy="35" r="4"/>
-        <circle cx="55" cy="45" r="3.5"/>
-        <circle cx="75" cy="42" r="4"/>
-        <circle cx="90" cy="29" r="4"/>
-        <circle cx="100" cy="45" r="3.5"/>
-        <circle cx="60" cy="68" r="3"/>
-        <circle cx="45" cy="60" r="3"/>
-        <circle cx="78" cy="56" r="3"/>
-        <circle cx="20" cy="68" r="3"/>
-        <circle cx="108" cy="38" r="3"/>
-        <circle cx="62" cy="30" r="3.5"/>
-        <circle cx="32" cy="48" r="3"/>
-      </g>
-      <!-- tiny petal details on larger ones -->
-      <g fill="white" opacity="0.5">
-        <circle cx="15" cy="51" r="2"/>
-        <circle cx="19" cy="55" r="2"/>
-        <circle cx="11" cy="55" r="2"/>
-        <circle cx="15" cy="59" r="2"/>
-        <circle cx="28" cy="31" r="2"/>
-        <circle cx="32" cy="35" r="2"/>
-        <circle cx="90" cy="25" r="2"/>
-        <circle cx="94" cy="29" r="2"/>
+        <circle cx="20" cy="60" r="4"/>
+        <circle cx="30" cy="48" r="3.5"/>
+        <circle cx="50" cy="50" r="3.5"/>
+        <circle cx="70" cy="45" r="4"/>
+        <circle cx="78" cy="58" r="3.5"/>
+        <circle cx="45" cy="65" r="3"/>
+        <circle cx="62" cy="70" r="3"/>
       </g>
     </svg>
   </div>
 
-  <!-- wax seal -->
-  <img class="hero-seal" src="images/Wax Seal.png" alt="Wax Seal"/>
+  <div class="hero-seal">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a84c" stroke-width="2"/>
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#c9a84c" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="50" cy="50" r="35" fill="#c9a84c" opacity="0.15"/>
+      <path d="M 50 25 Q 60 35 60 50 Q 60 65 50 75 Q 40 65 40 50 Q 40 35 50 25" 
+            fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.8"/>
+      <circle cx="50" cy="50" r="8" fill="#c9a84c" opacity="0.3"/>
+    </svg>
+  </div>
 
-  <!-- names -->
   <div class="hero-names">
     <span class="hero-name">Keerthi</span>
     <span class="hero-amp">&amp; Savit</span>
   </div>
 
-</div><!-- /hero -->
+</div>
 
 <div class="gold-rule"></div>
 
 <!-- ══ MAIN ══ -->
 <div class="main">
+  <div class="spine-long" style="top: 0; height: 2000px;"></div>
 
   <!-- INVITE -->
   <div class="invite-row">
-    <img class="invite-logo" src="images/Logo.png" alt="K&S monogram"/>
+    <svg class="invite-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>.mono { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; }</style>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a84c" stroke-width="2" opacity="0.6"/>
+      <text x="50" y="60" text-anchor="middle" class="mono" fill="#c9a84c" opacity="0.7">K&S</text>
+    </svg>
     <p class="invite-text">
       With lots of joy,<br/>
       we invite you to join us in celebrating<br/>
@@ -610,14 +683,14 @@
       <div class="event-body">
         <span class="event-name-script">Wedding</span>
         <p class="event-date">Sunday | 23rd Aug | 9 AM onwards</p>
-        <p class="event-venue">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamilnadu</p>
+        <p class="event-venue">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamil Nadu</p>
         <div class="transport-row">
           <div class="transport-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
             Madurai
           </div>
           <div class="transport-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="2"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
             Satur / Sivakasi
           </div>
           <div class="transport-item">
@@ -642,7 +715,7 @@
             Trivandrum
           </div>
           <div class="transport-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="3"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="13" rx="2"/><path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/><circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/><circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/></svg>
             Kayamkulam
           </div>
           <div class="transport-item">
@@ -653,25 +726,29 @@
       </div>
     </div>
 
-  </div><!-- /events -->
+  </div>
 
   <div class="gold-rule"></div>
 
   <!-- ══ SONG SECTION ══ -->
   <div class="song-section">
-    <img class="song-img" src="images/Gramaphone.png" alt="Gramophone"/>
+    <svg class="song-img" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="50" cy="45" rx="38" ry="40" fill="none" stroke="#c9a84c" stroke-width="3"/>
+      <rect x="42" y="80" width="16" height="28" fill="#c9a84c" opacity="0.7"/>
+      <rect x="35" y="85" width="30" height="4" rx="2" fill="#c9a84c" opacity="0.5"/>
+      <path d="M 50 45 Q 60 35 70 30 Q 75 28 78 35" fill="none" stroke="#c9a84c" stroke-width="2" opacity="0.6"/>
+      <circle cx="50" cy="45" r="25" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+    </svg>
     <div class="song-right">
-      <p class="song-prompt">Dedicate a song to our<br/>wedding soundtrack!</p>
+      <p class="song-prompt">Dedicate a song to our<br/>wedding soundtrack</p>
 
-      <!-- Name input -->
       <div class="input-pill">
-        <span class="pill-icon">👤</span>
+        <span class="pill-icon">♪</span>
         <input class="pill-input" id="guest-name" type="text" placeholder="Your name" maxlength="80"/>
       </div>
 
-      <!-- Song input -->
       <div class="input-pill">
-        <span class="pill-icon">♪</span>
+        <span class="pill-icon">♦</span>
         <input class="pill-input" id="song-input" type="text" placeholder="Song name · Artist" maxlength="120"/>
       </div>
 
@@ -684,9 +761,15 @@
 
   <!-- ══ PHOTO SECTION ══ -->
   <div class="photo-section">
-    <img class="camera-img" src="images/Camera.png" alt="Camera"/>
+    <svg class="camera-img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="15" width="84" height="70" rx="4" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+      <circle cx="50" cy="45" r="22" fill="none" stroke="#c9a84c" stroke-width="2"/>
+      <circle cx="50" cy="45" r="14" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+      <circle cx="70" cy="25" r="6" fill="#c9a84c" opacity="0.6"/>
+      <rect x="10" y="85" width="80" height="8" rx="2" fill="#c9a84c" opacity="0.4"/>
+    </svg>
     <div class="photo-right">
-      <p class="photo-prompt">Share your wedding memories with us!</p>
+      <p class="photo-prompt">Share your wedding memories with us</p>
 
       <div class="photo-grid" id="photo-grid"></div>
       <p class="photo-count" id="photo-count">0 / 6 photos selected</p>
@@ -702,28 +785,22 @@
   <div class="gold-rule"></div>
 
   <!-- ══ QUOTE SECTION ══ -->
-  <div class="quote-section" style="padding: 2rem 0 1.5rem; position:relative;">
-    <!-- decorative flower top-right -->
+  <div class="quote-section" style="padding: 2.2rem 0 1.8rem; position:relative;">
     <svg class="quote-flower" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
-      <!-- stem -->
       <line x1="40" y1="100" x2="40" y2="55" stroke="#c9a84c" stroke-width="1.2"/>
-      <!-- leaves -->
       <ellipse cx="28" cy="75" rx="10" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.8" transform="rotate(-30 28 75)"/>
       <ellipse cx="52" cy="68" rx="10" ry="5" fill="none" stroke="#c9a84c" stroke-width="0.8" transform="rotate(30 52 68)"/>
-      <!-- petals -->
       <g fill="none" stroke="#c9a84c" stroke-width="0.9">
         <ellipse cx="40" cy="38" rx="7" ry="14"/>
         <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(45 40 38)"/>
         <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(90 40 38)"/>
         <ellipse cx="40" cy="38" rx="7" ry="14" transform="rotate(135 40 38)"/>
       </g>
-      <!-- centre -->
       <circle cx="40" cy="38" r="6" fill="none" stroke="#c9a84c" stroke-width="0.9"/>
       <circle cx="40" cy="38" r="3" fill="#c9a84c" opacity="0.4"/>
     </svg>
 
     <div class="quote-body">
-      <!-- blurred/dotted text as in the original design -->
       <p class="quote-text" style="font-size:0.82rem; color: rgba(196,168,130,0.55); letter-spacing:0.15em;">
         · · · · · · · · · · · · · · ·
       </p>
@@ -735,27 +812,51 @@
       </p>
     </div>
 
-    <!-- big gold quote mark -->
-    <div style="align-self: flex-end; flex-shrink:0;">
-      <svg width="52" height="42" viewBox="0 0 52 42" xmlns="http://www.w3.org/2000/svg">
-        <text x="0" y="38" font-family="Georgia, serif" font-size="52" fill="#c9a84c" opacity="0.82">"</text>
-      </svg>
-    </div>
+    <svg class="quote-mark-img" viewBox="0 0 52 42" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="38" font-family="Georgia, serif" font-size="52" fill="#c9a84c" opacity="0.82">"</text>
+    </svg>
   </div>
+
+  <div class="gold-rule"></div>
+
+  <!-- ══ MORSE CODE SECTION ══ -->
+  <div class="morse-section">
+    <p class="morse-title">Our message to you</p>
+    
+    <div class="morse-code-container">
+      <div class="morse-dots">
+        -... . .-.. .. . ...- .<br/>
+        .. -.<br/>
+        -- .. .-. .- -.-. .-.. . ...
+      </div>
+      <div class="morse-translation">
+        BELIEVE IN MIRACLES
+      </div>
+    </div>
+    
+    <p class="morse-hint">Hover to reveal the message</p>
+  </div>
+
+  <div class="gold-rule"></div>
 
   <!-- ══ FOOTER ══ -->
   <div class="footer">
-    <img class="footer-logo" src="images/Logo.png" alt="K&S"/>
+    <svg class="footer-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>.mono-footer { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 400; }</style>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#c9a84c" stroke-width="2" opacity="0.6"/>
+      <text x="50" y="60" text-anchor="middle" class="mono-footer" fill="#c9a84c" opacity="0.7">K&S</text>
+    </svg>
   </div>
 
-</div><!-- /main -->
+</div>
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzEnofmfADualNvhmbwuue62DSpGwZi0YQuo_0FuWQbTcvzYl2fuyB5MsCJXSmQRwe9/exec";
   const MAX_PHOTOS = 6;
   let selectedFiles = [];
 
-  // ── PHOTO GRID ──
   function renderGrid() {
     const grid = document.getElementById("photo-grid");
     grid.innerHTML = "";
@@ -769,7 +870,7 @@
         slot.appendChild(img);
         const rm = document.createElement("div");
         rm.className = "slot-remove";
-        rm.innerHTML = "✕";
+        rm.innerHTML = "×";
         rm.onclick = (e) => { e.stopPropagation(); removePhoto(i); };
         slot.appendChild(rm);
       } else {
@@ -804,7 +905,6 @@
 
   renderGrid();
 
-  // ── RESIZE ──
   function resizeImage(file, maxPx = 1400) {
     return new Promise((resolve) => {
       const reader = new FileReader();
@@ -832,7 +932,6 @@
     });
   }
 
-  // ── SUBMIT SONG ──
   async function submitSong() {
     const nameEl = document.getElementById("guest-name");
     const songEl = document.getElementById("song-input");
@@ -846,7 +945,7 @@
     if (!song) { setStatus("song-status", "Please enter a song name.", "error"); return; }
 
     btn.disabled = true;
-    btn.textContent = "Sending…";
+    btn.textContent = "Sending...";
     setStatus("song-status", "", "");
 
     const entry = `${name}: ${song}`;
@@ -862,7 +961,7 @@
       songEl.value = "";
       btn.textContent = "Dedicate this song";
       btn.disabled = false;
-      setStatus("song-status", "♪ Added to our soundtrack — thank you!", "success");
+      setStatus("song-status", "Added to our soundtrack, thank you", "success");
       setTimeout(() => setStatus("song-status", "", ""), 5000);
     } catch (err) {
       btn.textContent = "Dedicate this song";
@@ -871,7 +970,6 @@
     }
   }
 
-  // ── SUBMIT PHOTOS ──
   async function submitPhotos() {
     if (selectedFiles.length === 0) return;
     const btn          = document.getElementById("photo-btn");
@@ -906,7 +1004,7 @@
       renderGrid();
       btn.disabled = true;
       setStatus("photo-status",
-        `📸 ${uploaded} photo${uploaded !== 1 ? "s" : ""} shared — thank you!`, "success");
+        `${uploaded} photo${uploaded !== 1 ? "s" : ""} shared, thank you`, "success");
       setTimeout(() => setStatus("photo-status", "", ""), 6000);
     }, 400);
   }
@@ -917,7 +1015,6 @@
     el.className = "status-msg" + (type ? " " + type : "");
   }
 
-  // Enter key on inputs
   document.getElementById("song-input").addEventListener("keydown", e => { if (e.key === "Enter") submitSong(); });
   document.getElementById("guest-name").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("song-input").focus(); });
 </script>
