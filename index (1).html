@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Keerthi & Savit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --maroon: #6b1d3e;
+    --maroon-dark: #4d1530;
+    --maroon-deeper: #3a0f24;
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --gold-pale: #f0e2b8;
+    --cream: #fdf6e3;
+    --text-light: #f5e6c8;
+    --text-muted: #c4a882;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--maroon);
+    color: var(--text-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 380px;
+    background: var(--maroon-dark);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 2.5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(107,29,62,0.6) 0%, transparent 50%);
+  }
+
+  .hero-img-placeholder {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(60,18,35,0.7) 0%, rgba(40,12,24,0.9) 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+
+  .hero-floral {
+    position: absolute;
+    top: -10px; left: 10px;
+    font-size: 4rem;
+    opacity: 0.25;
+    transform: rotate(-15deg);
+    line-height: 1;
+    filter: sepia(1) hue-rotate(330deg);
+  }
+
+  .hero-names {
+    position: relative;
+    text-align: right;
+    padding-right: 2rem;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--gold-pale);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .hero-ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    display: block;
+    margin: 0.2rem 0;
+  }
+
+  /* ── GOLD LINE ── */
+  .gold-line {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0;
+  }
+
+  /* ── MONOGRAM SEAL ── */
+  .seal-wrap {
+    display: flex;
+    justify-content: flex-start;
+    padding: 2rem 2rem 0;
+  }
+
+  .seal {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--maroon-dark);
+    position: relative;
+  }
+
+  .seal svg { width: 36px; height: 36px; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ── INVITE TEXT ── */
+  .invite-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2rem 0 2.5rem;
+  }
+
+  .monogram-left {
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+
+  .monogram-left svg { width: 48px; height: 64px; opacity: 0.85; }
+
+  .invite-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    font-weight: 300;
+  }
+
+  /* ── DIVIDER HEART ── */
+  .heart-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .heart-divider::before,
+  .heart-divider::after {
+    content: '';
+    flex: 1;
+    height: 0.5px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+
+  .heart-divider::after {
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .heart-icon { color: var(--gold); font-size: 0.7rem; }
+
+  /* ── EVENT SECTIONS ── */
+  .event {
+    padding: 1.5rem 0;
+    border-left: none;
+  }
+
+  .event-bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .bullet-heart {
+    color: var(--gold);
+    font-size: 0.6rem;
+    margin-top: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .event-name {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .event-date {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    letter-spacing: 0.04em;
+    margin: 0.3rem 0 0.8rem 1.35rem;
+  }
+
+  .event-venue {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0 0 0.75rem 1.35rem;
+    line-height: 1.5;
+  }
+
+  .transport-row {
+    display: flex;
+    gap: 1.25rem;
+    margin-left: 1.35rem;
+    flex-wrap: wrap;
+  }
+
+  .transport-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .transport-item svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION SPACING ── */
+  .section { padding: 2.5rem 0; }
+
+  /* ── GRAMOPHONE / SONG ── */
+  .gramophone-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+  }
+
+  .gramophone-icon {
+    font-size: 3.5rem;
+    opacity: 0.75;
+    flex-shrink: 0;
+    filter: sepia(1) hue-rotate(330deg) saturate(1.5);
+  }
+
+  .song-content { flex: 1; }
+
+  .song-prompt {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .song-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .song-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .song-input {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 100px;
+    padding: 0.65rem 1rem 0.65rem 2.4rem;
+    color: var(--text-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .song-input::placeholder { color: var(--text-muted); font-style: italic; }
+  .song-input:focus { border-color: var(--gold); }
+
+  .btn-gold {
+    display: block;
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .btn-gold:hover { background: rgba(201,168,76,0.15); }
+  .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* ── PHOTO SECTION ── */
+  .camera-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+  }
+
+  .camera-icon {
+    font-size: 3.2rem;
+    opacity: 0.75;
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    filter: sepia(1) hue-rotate(330deg) saturate(1.5);
+  }
+
+  .photo-content { flex: 1; }
+
+  .photo-prompt {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-bottom: 0.75rem;
+  }
+
+  .photo-slot {
+    aspect-ratio: 1;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .photo-slot:hover { border-color: rgba(201,168,76,0.5); }
+
+  .photo-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    position: absolute; inset: 0;
+  }
+
+  .slot-plus {
+    color: rgba(201,168,76,0.4);
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .slot-remove {
+    position: absolute;
+    top: 3px; right: 3px;
+    width: 18px; height: 18px;
+    background: rgba(107,29,62,0.85);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  #photo-file-input { display: none; }
+
+  .photo-count {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap {
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    display: none;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s;
+  }
+
+  /* ── STATUS MESSAGES ── */
+  .status-msg {
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 0.5rem;
+    min-height: 1.2rem;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s;
+  }
+
+  .status-msg.success { color: var(--gold-light); }
+  .status-msg.error { color: #e08080; }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    padding: 2.5rem 0 1rem;
+    position: relative;
+  }
+
+  .quote-mark-left {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 0.6;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+  }
+
+  .quote-mark-right {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.5;
+    float: right;
+    line-height: 0.5;
+    margin-top: -0.5rem;
+  }
+
+  /* ── FOOTER MONOGRAM ── */
+  .footer {
+    text-align: center;
+    padding: 2.5rem 0 3rem;
+  }
+
+  .footer svg { width: 60px; height: 72px; opacity: 0.6; }
+
+  /* ── DECORATIVE FLORAL RIGHT ── */
+  .floral-right {
+    position: absolute;
+    right: 0.5rem;
+    font-size: 2.5rem;
+    opacity: 0.18;
+    transform: rotate(10deg);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 480px) {
+    .hero-names { padding-right: 1.2rem; }
+    .gramophone-section, .camera-section { flex-direction: column; align-items: center; }
+    .gramophone-icon, .camera-icon { font-size: 2.8rem; }
+    .song-content, .photo-content { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-img-placeholder"></div>
+  <div class="hero-floral">🌸</div>
+  <div class="hero-names">
+    <span class="hero-name">Keerthi</span>
+    <span class="hero-ampersand">&amp; Savit</span>
+  </div>
+</div>
+
+<div class="gold-line"></div>
+
+<div class="main">
+
+  <!-- SEAL + INVITE -->
+  <div class="invite-section">
+    <div class="monogram-left">
+      <!-- K&S monogram SVG -->
+      <svg viewBox="0 0 48 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="2" y="38" font-family="Playfair Display, serif" font-size="28" font-style="italic" fill="#c9a84c" opacity="0.9">K</text>
+        <text x="18" y="58" font-family="Playfair Display, serif" font-size="22" font-style="italic" fill="#c9a84c" opacity="0.7">S</text>
+        <line x1="8" y1="20" x2="40" y2="55" stroke="#c9a84c" stroke-width="0.5" opacity="0.4"/>
+      </svg>
+    </div>
+    <p class="invite-text">
+      With lots of joy,<br/>
+      we invite you to join us in celebrating<br/>
+      love, laughter and happiness!
+    </p>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- ENGAGEMENT -->
+  <div class="event">
+    <div class="heart-divider" style="margin: 1.5rem 0 1rem;"><span class="heart-icon">♥</span></div>
+    <div class="event-bullet">
+      <span class="bullet-heart">♥</span>
+      <span class="event-name">Engagement</span>
+    </div>
+    <p class="event-date">Saturday | 22nd Aug | 6 PM onwards</p>
+  </div>
+
+  <!-- WEDDING -->
+  <div class="event">
+    <div class="heart-divider" style="margin: 0.5rem 0 1rem;"><span class="heart-icon">♥</span></div>
+    <div class="event-bullet">
+      <span class="bullet-heart">♥</span>
+      <span class="event-name">Wedding</span>
+    </div>
+    <p class="event-date">Sunday | 23rd Aug | 9 AM onwards</p>
+    <p class="event-venue">At Vairam Meera Convention Centre,<br/>Sivakasi, Tamilnadu</p>
+    <div class="transport-row">
+      <div class="transport-item">
+        <!-- plane icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </svg>
+        Madurai
+      </div>
+      <div class="transport-item">
+        <!-- train icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="16" height="13" rx="3"/>
+          <path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/>
+          <circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/>
+          <circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/>
+        </svg>
+        Satur / Sivakasi
+      </div>
+      <div class="transport-item">
+        <!-- bus icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/>
+          <circle cx="7" cy="18" r="1" fill="currentColor"/>
+          <circle cx="17" cy="18" r="1" fill="currentColor"/>
+        </svg>
+        Sivakasi
+      </div>
+    </div>
+  </div>
+
+  <!-- RECEPTION -->
+  <div class="event">
+    <div class="heart-divider" style="margin: 1rem 0 1rem;"><span class="heart-icon">♥</span></div>
+    <div class="event-bullet">
+      <span class="bullet-heart">♥</span>
+      <span class="event-name">Reception</span>
+    </div>
+    <p class="event-date">Saturday | 29th Aug | 4 PM onwards</p>
+    <p class="event-venue">At Green Valley Convention Centre,<br/>Adoor, Kerala</p>
+    <div class="transport-row">
+      <div class="transport-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+        </svg>
+        Trivandrum
+      </div>
+      <div class="transport-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="16" height="13" rx="3"/>
+          <path d="M4 10h16M8 19l-2 2M16 19l2 2M12 16v3"/>
+          <circle cx="8.5" cy="14.5" r="0.5" fill="currentColor"/>
+          <circle cx="15.5" cy="14.5" r="0.5" fill="currentColor"/>
+        </svg>
+        Kayamkulam
+      </div>
+      <div class="transport-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 6v6M16 6v6M2 12h20M4 18h1m14 0h1M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6z"/>
+          <circle cx="7" cy="18" r="1" fill="currentColor"/>
+          <circle cx="17" cy="18" r="1" fill="currentColor"/>
+        </svg>
+        Adoor
+      </div>
+    </div>
+  </div>
+
+  <div class="gold-line" style="margin-top: 1rem;"></div>
+
+  <!-- SONG DEDICATION -->
+  <div class="gramophone-section">
+    <div class="gramophone-icon">🎷</div>
+    <div class="song-content">
+      <p class="song-prompt">Dedicate a song to our<br/>wedding soundtrack!</p>
+      <div class="song-input-wrap">
+        <span class="song-icon">♪</span>
+        <input
+          class="song-input"
+          id="song-input"
+          type="text"
+          placeholder="Song name · Artist"
+          maxlength="120"
+        />
+      </div>
+      <button class="btn-gold" id="song-btn" onclick="submitSong()">Dedicate this song</button>
+      <p class="status-msg" id="song-status"></p>
+    </div>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- PHOTO UPLOAD -->
+  <div class="camera-section">
+    <div class="camera-icon">📷</div>
+    <div class="photo-content">
+      <p class="photo-prompt">Share your wedding memories with us!</p>
+
+      <div class="photo-grid" id="photo-grid">
+        <!-- slots generated by JS -->
+      </div>
+
+      <p class="photo-count" id="photo-count">0 / 6 photos selected</p>
+
+      <input type="file" id="photo-file-input" accept="image/*" multiple/>
+
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+
+      <button class="btn-gold" id="photo-btn" onclick="submitPhotos()" disabled>Upload photos</button>
+      <p class="status-msg" id="photo-status"></p>
+    </div>
+  </div>
+
+  <div class="gold-line"></div>
+
+  <!-- QUOTE -->
+  <div class="quote-section" style="position:relative;">
+    <span class="quote-mark-left">"</span>
+    <p class="quote-text">
+      Two souls, one heart — bound by love,<br/>
+      blessed by family, celebrated by all.
+    </p>
+    <span class="quote-mark-right">"</span>
+    <div class="floral-right" style="top: 0.5rem;">🌼</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <svg viewBox="0 0 60 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="2" y="44" font-family="Playfair Display, serif" font-size="32" font-style="italic" fill="#c9a84c" opacity="0.7">K</text>
+      <text x="22" y="64" font-family="Playfair Display, serif" font-size="26" font-style="italic" fill="#c9a84c" opacity="0.5">S</text>
+      <line x1="10" y1="22" x2="48" y2="62" stroke="#c9a84c" stroke-width="0.5" opacity="0.35"/>
+    </svg>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzEnofmfADualNvhmbwuue62DSpGwZi0YQuo_0FuWQbTcvzYl2fuyB5MsCJXSmQRwe9/exec";
+  const MAX_PHOTOS = 6;
+  let selectedFiles = [];
+
+  // ── PHOTO GRID INIT ──
+  function renderGrid() {
+    const grid = document.getElementById("photo-grid");
+    grid.innerHTML = "";
+    for (let i = 0; i < MAX_PHOTOS; i++) {
+      const slot = document.createElement("div");
+      slot.className = "photo-slot";
+      slot.dataset.index = i;
+
+      if (selectedFiles[i]) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(selectedFiles[i]);
+        img.alt = "Preview";
+        slot.appendChild(img);
+
+        const rm = document.createElement("div");
+        rm.className = "slot-remove";
+        rm.innerHTML = "✕";
+        rm.onclick = (e) => { e.stopPropagation(); removePhoto(i); };
+        slot.appendChild(rm);
+      } else {
+        slot.innerHTML = '<span class="slot-plus">+</span>';
+        slot.onclick = () => openPicker();
+      }
+      grid.appendChild(slot);
+    }
+    document.getElementById("photo-count").textContent =
+      `${selectedFiles.length} / ${MAX_PHOTOS} photos selected`;
+    document.getElementById("photo-btn").disabled = selectedFiles.length === 0;
+  }
+
+  function openPicker() {
+    if (selectedFiles.length >= MAX_PHOTOS) return;
+    const input = document.getElementById("photo-file-input");
+    input.value = "";
+    input.click();
+  }
+
+  document.getElementById("photo-file-input").addEventListener("change", function () {
+    const remaining = MAX_PHOTOS - selectedFiles.length;
+    const newFiles = Array.from(this.files).slice(0, remaining);
+    selectedFiles = [...selectedFiles, ...newFiles];
+    renderGrid();
+  });
+
+  function removePhoto(index) {
+    selectedFiles.splice(index, 1);
+    renderGrid();
+  }
+
+  renderGrid();
+
+  // ── RESIZE IMAGE ──
+  function resizeImage(file, maxPx = 1200) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, maxPx / Math.max(img.width, img.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+          canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+          canvas.toBlob((blob) => resolve(blob), "image/jpeg", 0.82);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function blobToBase64(blob) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result.split(",")[1]);
+      reader.readAsDataURL(blob);
+    });
+  }
+
+  // ── SUBMIT SONG ──
+  async function submitSong() {
+    const input = document.getElementById("song-input");
+    const status = document.getElementById("song-status");
+    const btn = document.getElementById("song-btn");
+    const song = input.value.trim();
+
+    if (!song) {
+      setStatus("song-status", "Please enter a song name first.", "error");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    setStatus("song-status", "", "");
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "song", song })
+      });
+      input.value = "";
+      btn.textContent = "Dedicate this song";
+      btn.disabled = false;
+      setStatus("song-status", "♪ Your song has been added to our soundtrack!", "success");
+      setTimeout(() => setStatus("song-status", "", ""), 5000);
+    } catch (err) {
+      btn.textContent = "Dedicate this song";
+      btn.disabled = false;
+      setStatus("song-status", "Something went wrong. Please try again.", "error");
+    }
+  }
+
+  // ── SUBMIT PHOTOS ──
+  async function submitPhotos() {
+    if (selectedFiles.length === 0) return;
+
+    const btn = document.getElementById("photo-btn");
+    const progressWrap = document.getElementById("progress-wrap");
+    const progressBar = document.getElementById("progress-bar");
+    const status = document.getElementById("photo-status");
+
+    btn.disabled = true;
+    progressWrap.style.display = "block";
+    setStatus("photo-status", "", "");
+
+    let uploaded = 0;
+
+    for (let i = 0; i < selectedFiles.length; i++) {
+      try {
+        const resized = await resizeImage(selectedFiles[i]);
+        const b64 = await blobToBase64(resized);
+        const filename = `wedding_photo_${Date.now()}_${i + 1}.jpg`;
+
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "photo",
+            filename,
+            filedata: b64,
+            mimetype: "image/jpeg"
+          })
+        });
+
+        uploaded++;
+        progressBar.style.width = `${(uploaded / selectedFiles.length) * 100}%`;
+      } catch (err) {
+        console.error("Photo upload error:", err);
+      }
+    }
+
+    setTimeout(() => {
+      progressWrap.style.display = "none";
+      progressBar.style.width = "0%";
+      selectedFiles = [];
+      renderGrid();
+      btn.disabled = true;
+      setStatus("photo-status",
+        uploaded === 1
+          ? "📸 1 photo shared — thank you!"
+          : `📸 ${uploaded} photos shared — thank you!`,
+        "success"
+      );
+      setTimeout(() => setStatus("photo-status", "", ""), 6000);
+    }, 500);
+  }
+
+  function setStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = "status-msg" + (type ? " " + type : "");
+  }
+
+  // Song input — submit on Enter
+  document.getElementById("song-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") submitSong();
+  });
+</script>
+</body>
+</html>
