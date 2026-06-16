@@ -48,79 +48,17 @@
   }
 
   /* ─────────────────── HERO ─────────────────── */
-  /*  Stack layout: photo on top, name card below, seamlessly blended */
   .hero {
     position: relative;
     width: 100%;
     z-index: 1;
-  }
-
-  /* Photo fills full width, natural aspect ratio */
-  .hero-photo-wrap {
-    position: relative;
-    width: 100%;
     line-height: 0;
   }
 
-  .hero-photo-wrap img {
+  .hero img {
     display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
-    object-position: center top;
-  }
-
-  /* Fade the bottom of the photo into the name panel */
-  .hero-photo-wrap::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 55%;
-    background: linear-gradient(to bottom,
-      transparent 0%,
-      rgba(20,2,16,0.7) 60%,
-      rgba(20,2,16,1) 100%
-    );
-    pointer-events: none;
-  }
-
-  /* Name panel — no background, it bleeds from photo fade */
-  .hero-name-panel {
-    background: rgba(20,2,16,1);
-    text-align: center;
-    padding: 1.2rem 1.5rem 2.2rem;
-    position: relative;
-  }
-
-  /* Cinzel for "Keerthi & Savit" */
-  .hero-names {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(2rem, 8vw, 3.4rem);
-    letter-spacing: 0.18em;
-    color: #fff;
-    text-transform: uppercase;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.7);
-    line-height: 1.15;
-  }
-
-  .hero-amp {
-    font-family: var(--font-script);
-    font-size: clamp(2.2rem, 9vw, 3.8rem);
-    color: var(--gold-light);
-    font-weight: 400;
-    vertical-align: middle;
-    line-height: 1;
-    display: inline-block;
-    margin: 0 0.25em;
-  }
-
-  /* Fine gold rule under names */
-  .hero-rule {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0.9rem auto 0;
   }
 
   /* ─────────────────── MAIN ─────────────────── */
@@ -157,7 +95,6 @@
     display:flex;flex-direction:column;align-items:center;gap:1.5rem;
   }
 
-  /* Gold glow + subtle bounce on ALL decorative images */
   @keyframes floatBounce {
     0%,100% { transform: translateY(0px); }
     50%      { transform: translateY(-5px); }
@@ -184,7 +121,6 @@
     animation: floatBounce 4s ease-in-out infinite;
   }
 
-  /* Sunflowers: slightly offset phase */
   .side-sunflower {
     width: clamp(40px,11vw,55px);
     height: auto;
@@ -212,7 +148,6 @@
   }
   .timeline-event:last-child { padding-bottom:0;border-bottom:none; }
 
-  /* Edwardian Script for event titles */
   .event-title {
     font-family: var(--font-script);
     font-size: 2.6rem;
@@ -332,7 +267,6 @@
     margin:0.18rem 0;
   }
 
-  /* Each token shows morse code; on click it flips to the letter */
   .morse-token {
     display: inline-flex;
     align-items: center;
@@ -369,11 +303,9 @@
     text-shadow: 0 0 10px rgba(243,225,182,0.6);
   }
 
-  /* Revealed state: hide morse, show letter */
   .morse-token.revealed .token-morse  { opacity: 0; transform: scale(0.6); }
   .morse-token.revealed .token-letter { opacity: 1; transform: scale(1); }
 
-  /* Word gap line */
   .morse-gap { height: 0.35rem; width: 100%; }
 
   .cipher-hint {
@@ -402,18 +334,8 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <div class="hero">
-  <!-- Photo fills full width naturally -->
-  <div class="hero-photo-wrap">
-    <img src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/LampPhoto.png"
-         alt="Keerthi and Savit wedding"/>
-  </div>
-  <!-- Name panel seamlessly continues below the faded photo -->
-  <div class="hero-name-panel">
-    <div class="hero-names">
-      Keerthi <span class="hero-amp">&amp;</span> Savit
-    </div>
-    <div class="hero-rule"></div>
-  </div>
+  <img src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/WEBSITE_TOP.png"
+       alt="Keerthi and Savit Wedding"/>
 </div>
 
 <!-- ═══════════ MAIN ═══════════ -->
@@ -565,12 +487,10 @@ function buildMorseTokens() {
       const tok = document.createElement('span');
       tok.className = 'morse-token';
 
-      // Morse side
       const m = document.createElement('span');
       m.className = 'token-morse';
       m.textContent = code;
 
-      // Letter side (overlaid, hidden until click)
       const l = document.createElement('span');
       l.className = 'token-letter';
       l.textContent = letter;
@@ -578,7 +498,6 @@ function buildMorseTokens() {
       tok.appendChild(m);
       tok.appendChild(l);
 
-      // Click: toggle revealed — letter replaces morse in-place
       tok.addEventListener('click', () => tok.classList.toggle('revealed'));
 
       line.appendChild(tok);
@@ -586,7 +505,6 @@ function buildMorseTokens() {
 
     container.appendChild(line);
 
-    // Small gap row between words
     if (wi < words.length - 1) {
       const gap = document.createElement('div');
       gap.className = 'morse-gap';
