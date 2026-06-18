@@ -122,26 +122,6 @@
     animation: floatBounce 4s ease-in-out infinite;
   }
 
-  .side-sunflower {
-    width: clamp(30px, 8vw, 42px);
-    height: auto;
-    opacity: 0.85;
-    display: block;
-    user-select: none;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 7px rgba(194,167,108,0.4));
-    animation: floatBounce 4.2s ease-in-out infinite;
-  }
-  .side-sunflower:last-child { animation-delay: 0.6s; }
-
-  .invite-msg {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: var(--text-light);
-    letter-spacing: 0.02em;
-    font-family: var(--font-body);
-  }
-
   /* ─── ITINERARY ─── */
   .timeline-container { display:flex;flex-direction:column;gap:1.2rem; }
 
@@ -279,8 +259,26 @@
 
   /* ─── MORSE CIPHER ─── */
   .morse-wrapper {
-    display:flex;align-items:center;justify-content:space-between;
-    gap:0.4rem;width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .side-quote {
+    width: clamp(24px, 6vw, 32px);
+    height: auto;
+    opacity: 0.85;
+    display: block;
+    user-select: none;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 6px rgba(194,167,108,0.3));
+    animation: floatBounce 4.2s ease-in-out infinite;
+  }
+  .side-quote.right-side {
+    animation-delay: 0.6s;
+    transform: scaleX(-1); /* Flips the left quote into a proper closing quote */
   }
 
   .cipher-board {
@@ -482,13 +480,13 @@
   </div>
 
   <div class="morse-wrapper">
-    <img class="side-sunflower" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Quote_Sunflower.png" alt=""/>
+    <img class="side-quote left-side" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Quote_Sunflower.png" alt=""/>
     
     <div class="cipher-board" id="cipher-board">
       <div id="morse-tokens"></div>
     </div>
 
-    <img class="side-sunflower" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/quote_sunflowers.png" alt=""/>
+    <img class="side-quote right-side" src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Quote_Sunflower.png" alt=""/>
   </div>
 
   <div class="footer">
