@@ -405,11 +405,11 @@
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/bUFxDwiyHe172CALA" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="12" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M6 19l-2 2M18 19l2 2M12 15v4"/></svg>
-          Sivakasi Stn
+          Sivakasi Stn.
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/mXBdGxk676ApPaKw6" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="12" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M6 19l-2 2M18 19l2 2M12 15v4"/></svg>
-          Satur Stn
+          Satur Stn.
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/FTiwrM1KZiGHefBx9" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/><path d="M4 10h16M7 5h2M15 5h2"/></svg>
@@ -431,11 +431,11 @@
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/zNqn6bPtzRZ5q8pW7" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="12" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M6 19l-2 2M18 19l2 2M12 15v4"/></svg>
-          Kayamkulam Stn
+          Kayamkulam Stn.
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/xoG64WpKH2RyBMNo6" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="12" rx="2"/><line x1="4" y1="11" x2="20" y2="11"/><path d="M6 19l-2 2M18 19l2 2M12 15v4"/></svg>
-          Kollam Stn
+          Kollam Stn.
         </a>
         <a class="transit-pill" href="https://maps.app.goo.gl/PJU9UNq3LwkBFp5u5" target="_blank">
           <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="8" cy="16" r="1"/><circle cx="16" cy="16" r="1"/><path d="M4 10h16M7 5h2M15 5h2"/></svg>
@@ -473,6 +473,10 @@
            src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Camera.png" alt=""/>
       <h3 class="interactive-title">Share Memories</h3>
       <p class="interactive-desc">Upload photos captured throughout our special days</p>
+    </div>
+    <div class="input-capsule">
+      <span class="input-icon">♪</span>
+      <input class="luxury-input" id="photo-guest-name" type="text" placeholder="Your name" maxlength="80"/>
     </div>
     <div class="photo-matrix" id="photo-grid"></div>
     <input type="file" id="photo-file-input" accept="image/*" multiple/>
@@ -530,7 +534,7 @@ function buildMorseTokens() {
     const line = document.createElement('div');
     line.className = 'morse-line';
 
-    [...word].forEach(letter => {
+    ...word].forEach(letter => {
       const code = LETTER_TO_MORSE[letter] || '?';
       const tok = document.createElement('span');
       tok.className = 'morse-token';
@@ -648,6 +652,14 @@ async function submitSong() {
 
 async function submitPhotos() {
   if (!selectedFiles.length) return;
+  const pName = document.getElementById("photo-guest-name");
+  const guestNameClean = pName.value.trim().replace(/[^a-zA-Z0-9]/g, "_");
+  
+  if (!guestNameClean) { 
+    setStatus("photo-status","Please enter your name before uploading.","error"); 
+    return; 
+  }
+
   const btn=document.getElementById("photo-btn");
   const pw=document.getElementById("progress-wrap"),pb=document.getElementById("progress-bar");
   btn.disabled=true; pw.style.display="block"; setStatus("photo-status","","");
@@ -656,16 +668,19 @@ async function submitPhotos() {
     try {
       const resized=await resizeImage(selectedFiles[i]);
       const b64=await blobToBase64(resized);
+      // Constructing filename containing the sender's cleaned name
+      const formattedFilename = `${guestNameClean}_wedding_photo_${Date.now()}_${i+1}.jpg`;
+      
       await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({type:"photo",filename:`wedding_photo_${Date.now()}_${i+1}.jpg`,filedata:b64,mimetype:"image/jpeg"})});
+        body:JSON.stringify({type:"photo",filename:formattedFilename,filedata:b64,mimetype:"image/jpeg"})});
       uploaded++;
       pb.style.width=`${(uploaded/selectedFiles.length)*100}%`;
     } catch(e){console.error(e);}
   }
   setTimeout(()=>{
     pw.style.display="none"; pb.style.width="0%";
-    selectedFiles=[]; renderGrid(); btn.disabled=true;
-    setStatus("photo-status",`${uploaded} memory shared into our archive!`,"success");
+    selectedFiles=[]; pName.value=""; renderGrid(); btn.disabled=true;
+    setStatus("photo-status",`${uploaded} memory shared into our Treasure Trove!`,"success");
     setTimeout(()=>setStatus("photo-status","",""),6000);
   },400);
 }
