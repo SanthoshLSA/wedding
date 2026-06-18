@@ -364,16 +364,13 @@
 </head>
 <body>
 
-<!-- ═══════════ HERO ═══════════ -->
 <div class="hero">
   <img src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/WEBSITE_TOP.png"
        alt="Keerthi and Savit Wedding"/>
 </div>
 
-<!-- ═══════════ MAIN ═══════════ -->
 <div class="main">
 
-  <!-- Invitation -->
   <div class="luxury-card invite-card">
     <img class="invite-monogram"
          src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
@@ -384,7 +381,6 @@
     </p>
   </div>
 
-  <!-- Timeline -->
   <div class="luxury-card timeline-container">
 
     <div class="timeline-event">
@@ -446,7 +442,6 @@
 
   </div>
 
-  <!-- Song -->
   <div class="luxury-card">
     <div class="interactive-header">
       <img class="interactive-icon"
@@ -466,7 +461,6 @@
     <p class="status-msg" id="song-status"></p>
   </div>
 
-  <!-- Photos -->
   <div class="luxury-card">
     <div class="interactive-header">
       <img class="interactive-icon"
@@ -487,7 +481,6 @@
     <p class="status-msg" id="photo-status"></p>
   </div>
 
-  <!-- Morse Cipher Wrap -->
   <div class="morse-wrapper">
     <svg class="side-sunflower" viewBox="0 0 24 24" fill="none" stroke="#c2a76c" stroke-width="1.5">
       <circle cx="12" cy="12" r="3" fill="#c2a76c"/>
@@ -509,9 +502,7 @@
          src="https://raw.githubusercontent.com/SanthoshLSA/wedding/main/images/Logo.png" alt=""/>
   </div>
 
-</div><!-- /main -->
-
-<script>
+</div><script>
 /* ══════════ MORSE CIPHER ══════════ */
 const MORSE_MAP = {
   '.-':'A','-...':'B','-.-.':'C','-..':'D','.':'E','..-.':'F',
@@ -534,7 +525,7 @@ function buildMorseTokens() {
     const line = document.createElement('div');
     line.className = 'morse-line';
 
-    ...word].forEach(letter => {
+    [...word].forEach(letter => {
       const code = LETTER_TO_MORSE[letter] || '?';
       const tok = document.createElement('span');
       tok.className = 'morse-token';
@@ -664,11 +655,11 @@ async function submitPhotos() {
   const pw=document.getElementById("progress-wrap"),pb=document.getElementById("progress-bar");
   btn.disabled=true; pw.style.display="block"; setStatus("photo-status","","");
   let uploaded=0;
+  
   for (let i=0;i<selectedFiles.length;i++) {
     try {
       const resized=await resizeImage(selectedFiles[i]);
       const b64=await blobToBase64(resized);
-      // Constructing filename containing the sender's cleaned name
       const formattedFilename = `${guestNameClean}_wedding_photo_${Date.now()}_${i+1}.jpg`;
       
       await fetch(SCRIPT_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},
@@ -677,6 +668,7 @@ async function submitPhotos() {
       pb.style.width=`${(uploaded/selectedFiles.length)*100}%`;
     } catch(e){console.error(e);}
   }
+  
   setTimeout(()=>{
     pw.style.display="none"; pb.style.width="0%";
     selectedFiles=[]; pName.value=""; renderGrid(); btn.disabled=true;
