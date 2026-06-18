@@ -4,7 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Keerthi & Savit - Wedding Celebration</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" crossorigin="anonymous"/>
 <style>
   @import url('https://fonts.cdnfonts.com/css/edwardian-script-itc');
 
@@ -19,11 +21,15 @@
     --text-light: #f9f5eb;
     --text-muted: #bda685;
     --shadow: 0 15px 35px rgba(0,0,0,0.6);
-    --font-body: 'Libre Baskerville','Baskerville Old Face','Baskerville',Georgia,serif;
-    --font-script: 'Edwardian Script ITC','Great Vibes',cursive;
+    --font-body: 'Libre Baskerville', 'Baskerville Old Face', 'Baskerville', Georgia, serif;
+    --font-script: 'Edwardian Script ITC', 'Great Vibes', cursive;
   }
 
-  html { scroll-behavior: smooth; }
+  html { 
+    scroll-behavior: smooth; 
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 
   body {
     background: var(--bg);
@@ -37,6 +43,8 @@
     padding-bottom: 5rem;
     box-shadow: 0 0 60px rgba(0,0,0,0.8);
     font-size: 0.85rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body::before {
@@ -278,7 +286,7 @@
   }
   .side-quote.right-side {
     animation-delay: 0.6s;
-    transform: scaleX(-1); /* Flips the left quote into a proper closing quote */
+    transform: scaleX(-1);
   }
 
   .cipher-board {
