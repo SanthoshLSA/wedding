@@ -356,7 +356,7 @@
     font-size:0.75rem;text-align:center;margin-top:0.4rem;min-height:1rem;
     font-family:var(--font-body);
   }
-  .status-msg.success { color:#a4deb1; }
+  .status-msg.success { color: var(--gold-light); }
   .status-msg.error   { color:#ff9e9e; }
 
   .progress-wrap {
@@ -525,7 +525,7 @@ function buildMorseTokens() {
     const line = document.createElement('div');
     line.className = 'morse-line';
 
-    [...word].forEach(letter => {
+    ...word].forEach(letter => {
       const code = LETTER_TO_MORSE[letter] || '?';
       const tok = document.createElement('span');
       tok.className = 'morse-token';
@@ -671,8 +671,12 @@ async function submitPhotos() {
   
   setTimeout(()=>{
     pw.style.display="none"; pb.style.width="0%";
+    const finalCount = uploaded;
     selectedFiles=[]; pName.value=""; renderGrid(); btn.disabled=true;
-    setStatus("photo-status",`${uploaded} memory shared into our Treasure Trove!`,"success");
+    
+    const memoryWord = finalCount === 1 ? "memory" : "memories";
+    setStatus("photo-status", `${finalCount} ${memoryWord} added to our Treasure Trove!`, "success");
+    
     setTimeout(()=>setStatus("photo-status","",""),6000);
   },400);
 }
